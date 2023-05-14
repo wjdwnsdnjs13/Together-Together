@@ -2,6 +2,8 @@ package com.together.springStudy.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class VolunteerList {
     int volId;
@@ -12,6 +14,6 @@ public class VolunteerList {
     String volCategory;
     String volLocation;
     String volLocationStr;
-    String volStime;
-    String volEdtime;
+    Date volStime;
+    Date volEdtime;
 }

@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class ClubData {
     int clubId;
-    String clubLeaderDid;
+    int clubLeaderDid;
     int clubBoardId;
     String clubName;
     String clubDef;

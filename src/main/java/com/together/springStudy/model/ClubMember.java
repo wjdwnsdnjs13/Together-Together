@@ -7,5 +7,5 @@ public class ClubMember {
 
     int memberDid;
     int memberClubId;
-    String memberPer;
+    int memberPer;
 }
