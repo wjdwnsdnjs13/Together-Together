@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.together.springStudy.mapper.clubMapper">
+
+    <select id="getAllClub" >
+        SELECT * FROM club_data
+    </select>
+    <insert id="createClub" resultType="int">
+        INSERT INTO club_data (club_leader_did, club_board_id, club_name, club_description)
+        VALUES ( #{clubLeaderDid}, #{clubBoardId}, #{clubName}, #{clubDescription})
+    </insert>
+
+</mapper>
