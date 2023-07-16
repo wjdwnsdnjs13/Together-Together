@@ -2,6 +2,7 @@ package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.ClubMapper;
 import com.together.springStudy.model.ClubData;
+import com.together.springStudy.model.CreateClubData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,8 +18,8 @@ public class ClubService {
     ClubMapper clubMapper;
 
     @Transactional
-    public Integer createClub(ClubData clubData){
-        return clubMapper.createClub(clubData);
+    public Integer createClub(CreateClubData createClubData){
+        return clubMapper.createClub(createClubData);
     }
 
     @Transactional

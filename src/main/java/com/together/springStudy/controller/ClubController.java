@@ -1,6 +1,7 @@
 package com.together.springStudy.controller;
 
 import com.together.springStudy.model.ClubData;
+import com.together.springStudy.model.CreateClubData;
 import com.together.springStudy.model.UserData;
 import com.together.springStudy.service.ClubService;
 import lombok.RequiredArgsConstructor;
@@ -25,10 +26,9 @@ public class ClubController {
     ClubService clubService;
 
     @GetMapping("/createClub")
-    public ResponseEntity<Void> createClub(ClubData clubData, Integer clubLeaderDid){
-        log.debug("club info : {}", clubData);
-        log.debug("club leader : {}", clubLeaderDid);
-        Integer result = clubService.createClub(clubData);
+    public ResponseEntity<Void> createClub(CreateClubData createClubData){
+        log.debug("createClubData info : {}", createClubData);
+        Integer result = clubService.createClub(createClubData);
         if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
