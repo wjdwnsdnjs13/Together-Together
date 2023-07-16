@@ -5,7 +5,8 @@ import lombok.Data;
 @Data
 public class ClubMember {
 
-    int memberDid;
+    int clubMemberId;
+    int memberUserId;
     int memberClubId;
-    int memberPer;
+    int memberPermision;
 }

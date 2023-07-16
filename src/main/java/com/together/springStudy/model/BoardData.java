@@ -6,6 +6,6 @@ import lombok.Data;
 public class BoardData {
     int boardId;
     String boardName;
-    String boardDef;
+    String boardDescription;
     String boardType;
 }

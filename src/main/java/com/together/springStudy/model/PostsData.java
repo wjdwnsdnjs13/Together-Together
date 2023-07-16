@@ -8,9 +8,9 @@ import java.util.Date;
 public class PostsData {
     int postId;
     int postBoardId;
-    int postUserDid;
+    int postUserId;
     String postTitle;
     String postContent;
     String postTag;
-    Date postDtime;
+    Date postCreationDate;
 }

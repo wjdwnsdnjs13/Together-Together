@@ -5,17 +5,17 @@
 
     <resultMap id="ClubDataMap" type="com.together.springStudy.model.ClubData">
         <id column="club_id" property="clubId"/>
-        <result column="club_master" property="clubMaster"/>
+        <result column="club_leader_id" property="clubLeaderId"/>
         <result column="club_board_id" property="clubBoardId"/>
         <result column="club_name" property="clubName"/>
-        <result column="club_def" property="clubDef"/>
+        <result column="club_description" property="clubDescription"/>
     </resultMap>
     <select id="getAllClub" resultMap="ClubDataMap">
         SELECT * FROM club_data
     </select>
     <insert id="createClub" parameterType="com.together.springStudy.model.CreateClubData">
-        INSERT INTO club_data (club_leader_did, club_name, club_description)
-        VALUES ( #{clubLeaderDid}, #{clubName}, #{clubDescription})
+        INSERT INTO club_data (club_leader_id, club_name, club_description)
+        VALUES ( #{clubLeaderId}, #{clubName}, #{clubDescription})
     </insert>
 
 </mapper>
