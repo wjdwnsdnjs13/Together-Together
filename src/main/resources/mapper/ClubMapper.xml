@@ -10,7 +10,7 @@
         <result column="club_name" property="clubName"/>
         <result column="club_description" property="clubDescription"/>
     </resultMap>
-    
+
     <select id="getAllClub" resultMap="ClubDataMap">
         SELECT * FROM club_data
     </select>
