@@ -10,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,8 +23,8 @@ public class ClubController {
     @Autowired
     ClubService clubService;
 
-    @GetMapping("/createClub")
-    public ResponseEntity<Void> createClub(CreateClubData createClubData){
+    @PostMapping("/createClub")
+    public ResponseEntity<Void> createClub(@RequestBody CreateClubData createClubData){
         log.debug("createClubData info : {}", createClubData);
         Integer result = clubService.createClub(createClubData);
         if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
