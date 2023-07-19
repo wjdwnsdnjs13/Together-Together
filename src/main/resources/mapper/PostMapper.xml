@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.together.springStudy.mapper.PostMapper">
+
+    <resultMap id="PostMainMap" type="com.together.springStudy.model.PostMainData">
+        <id column="club_id" property="clubId"/>
+        <result column="club_leader_id" property="clubLeaderId"/>
+        <result column="club_board_id" property="clubBoardId"/>
+        <result column="club_name" property="clubName"/>
+        <result column="club_description" property="clubDescription"/>
+    </resultMap>
+
+    <select id="getAllPost" resultMap="PostMainMap">
+        SELECT * FROM post_data
+    </select>
+    <select id="getByPostId" resultType="com.together.springStudy.model.PostsData">
+        SELECT * FROM post_data WHERE post_id = #{postId}
+    </select>
+
+
+</mapper>
