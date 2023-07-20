@@ -18,5 +18,11 @@
         SELECT * FROM post_data WHERE post_id = #{postId}
     </select>
 
+    <insert id="createPost" parameterType="com.together.springStudy.model.PostsData">
+        INSERT INTO posts_data
+        (post_board_id, post_user_id, post_title, post_content, post_creation_date)
+        VALUES (#{postBoardId}, #{postUserId}, #{postTitle}, #{postContent}, #{postCreationDate})
+    </insert>
+
 
 </mapper>
