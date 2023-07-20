@@ -11,4 +11,5 @@ public interface PostMapper {
     List<PostMainData> getAllPost();
     int createPost(PostsData postsData);
     PostsData getByPostId(int postId);
+
 }

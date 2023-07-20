@@ -14,14 +14,16 @@ import java.util.List;
 @RequiredArgsConstructor
 public class PostService {
 
+    //    컨트롤러에서 서비스 객체와 여기서 private final을 해주지 않으면
+    //    Bean주입이 안된다고함. -> NullPointExection 뜸 bean 공부해보기..
     @Mapper
-    PostMapper postMapper;
+    private final PostMapper postMapper;
 
     @Transactional
     public List<PostMainData> getAllPost(){ return postMapper.getAllPost(); }
 
     @Transactional
-    public int createPost(PostsData postsData){ return postMapper.createPost(postsData); }
+    public Integer createPost(PostsData postsData){ return postMapper.createPost(postsData); }
 
     @Transactional
     public PostsData getByPostId(int postId){ return postMapper.getByPostId(postId); }
