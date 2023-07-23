@@ -22,8 +22,10 @@ public class PostController {
 
 //    서비스와 여기서 private final을 해주지 않으면
 //    Bean주입이 안된다고함. -> NullPointExection 뜸 bean 공부해보기..
+
+//    서비스 객체는 final 안해줘도 되긴하네?
     @Autowired
-    private final PostService postService;
+    PostService postService;
 
     @GetMapping("/getAllPost")
     public List<PostMainData> getAllPost(){
