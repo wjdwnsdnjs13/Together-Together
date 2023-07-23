@@ -5,6 +5,7 @@ import com.together.springStudy.model.PostMainData;
 import com.together.springStudy.model.PostsData;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,7 @@ public class PostService {
 
 //    다시, controller에서 service 객체는 final 안해줘도 되는데,
 //    매퍼 객체는 final로 안하면 nullPointExcection 뜸.
-    @Mapper
+    @Autowired
     PostMapper postMapper;
 
     @Transactional
