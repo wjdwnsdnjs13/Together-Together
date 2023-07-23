@@ -17,7 +17,7 @@ public class PostService {
     //    컨트롤러에서 서비스 객체와 여기서 private final을 해주지 않으면
     //    Bean주입이 안된다고함. -> NullPointExection 뜸 bean 공부해보기..
     @Mapper
-    private final PostMapper postMapper;
+    PostMapper postMapper;
 
     @Transactional
     public List<PostMainData> getAllPost(){ return postMapper.getAllPost(); }
