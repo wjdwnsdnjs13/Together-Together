@@ -20,7 +20,7 @@ public class PostService {
 //    다시, controller에서 service 객체는 final 안해줘도 되는데,
 //    매퍼 객체는 final로 안하면 nullPointExcection 뜸.
     @Mapper
-    private final PostMapper postMapper;
+    PostMapper postMapper;
 
     @Transactional
     public List<PostMainData> getAllPost(){ return postMapper.getAllPost(); }
