@@ -50,6 +50,7 @@ public class PostController {
     }
 
 //    댓글 관련
+    @PostMapping("/createComment")
     public ResponseEntity<Void> createComment(@RequestBody PostComment postComment){
         log.debug("postComment : {}", postComment);
 //        댓글 작성 시간 필요할 듯?
