@@ -6,6 +6,7 @@ import lombok.Data;
 public class PostComment {
     int commentId;
     int commentUserId;
+    int commentPostId;
     int commentParentnum;
     String commentContent;
 }
