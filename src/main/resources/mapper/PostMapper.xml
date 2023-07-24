@@ -24,5 +24,13 @@
         VALUES (#{postBoardId}, #{postUserId}, #{postTitle}, #{postContent}, #{postCreationDate})
     </insert>
 
+    <insert id="createComment" parameterType="com.together.springStudy.model.PostComment">
+        INSERT INTO post_comment
+        (comment_user_id, comment_post_id, comment_parentnum, comment_content)
+        VALUES (#{commentUserId}, #{commentPostId}, #{commentParentnum}, #{commentContent})
+    </insert>
 
+    <insert id="createLike" parameterType="com.together.springStudy.model.PostLike">
+
+    </insert>
 </mapper>

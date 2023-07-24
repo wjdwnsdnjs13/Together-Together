@@ -1,6 +1,7 @@
 package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.PostMapper;
+import com.together.springStudy.model.PostComment;
 import com.together.springStudy.model.PostMainData;
 import com.together.springStudy.model.PostsData;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +24,7 @@ public class PostService {
     @Autowired
     PostMapper postMapper;
 
+//    post 관련
     @Transactional
     public List<PostMainData> getAllPost(){ return postMapper.getAllPost(); }
 
@@ -32,4 +34,8 @@ public class PostService {
     @Transactional
     public PostsData getByPostId(int postId){ return postMapper.getByPostId(postId); }
 
+
+//    댓글 관련
+    @Transactional
+    public int createComment(PostComment postComment){ return postMapper.createComment(postComment); }
 }

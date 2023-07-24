@@ -1,5 +1,7 @@
 package com.together.springStudy.controller;
 
+import com.together.springStudy.model.PostComment;
+import com.together.springStudy.model.PostLike;
 import com.together.springStudy.model.PostMainData;
 import com.together.springStudy.model.PostsData;
 import com.together.springStudy.service.PostService;
@@ -27,6 +29,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
+//    post 관련
     @GetMapping("/getAllPost")
     public List<PostMainData> getAllPost(){
         List<PostMainData> postMainDataList = postService.getAllPost();
@@ -44,5 +47,21 @@ public class PostController {
         Integer result = postService.createPost(postsData);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+//    댓글 관련
+    public ResponseEntity<Void> createComment(@RequestBody PostComment postComment){
+        log.debug("postComment : {}", postComment);
+//        댓글 작성 시간 필요할 듯?
+//        postComment.setCommentCreationDate(new Timestamp(System.currentTimeMillis()));
+        Integer result = postService.createComment(postComment);
+        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+//    좋아요 관련
+    @PostMapping("/createLike")
+    public ResponseEntity<Void> createLike(@RequestBody PostLike postLike){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }
