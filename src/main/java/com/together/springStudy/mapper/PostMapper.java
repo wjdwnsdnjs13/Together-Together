@@ -18,4 +18,5 @@ public interface PostMapper {
 
 //    댓글 관련
     int createComment(PostComment postComment);
+    int createChildComment(PostComment postComment);
 }

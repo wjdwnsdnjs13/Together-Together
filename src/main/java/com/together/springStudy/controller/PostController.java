@@ -60,6 +60,16 @@ public class PostController {
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @PostMapping("/createChildComment")
+    public ResponseEntity<Void> createChildComment(@RequestBody PostComment postComment){
+        log.debug("postComment : {}", postComment);
+//        댓글 작성 시간 필요할 듯?
+//        postComment.setCommentCreationDate(new Timestamp(System.currentTimeMillis()));
+        Integer result = postService.createChildComment(postComment);
+        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 //    좋아요 관련
     @PostMapping("/createLike")
     public ResponseEntity<Void> createLike(@RequestBody PostLike postLike){

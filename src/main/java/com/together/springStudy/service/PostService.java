@@ -38,4 +38,8 @@ public class PostService {
 //    댓글 관련
     @Transactional
     public int createComment(PostComment postComment){ return postMapper.createComment(postComment); }
+
+    @Transactional
+    public int createChildComment(PostComment postComment){ return postMapper.createChildComment(postComment); }
+
 }
