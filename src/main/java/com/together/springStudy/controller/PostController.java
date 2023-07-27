@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.stream.events.Comment;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -69,6 +70,11 @@ public class PostController {
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+//    @GetMapping("/getAllCommentByPostId")
+//    public List<PostComment> getAllCommentByPostId(int PostId){
+//        return postCommentList;
+//    }
 
 //    좋아요 관련
     @PostMapping("/createLike")

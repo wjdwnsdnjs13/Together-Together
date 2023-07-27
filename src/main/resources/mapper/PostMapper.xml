@@ -12,27 +12,48 @@
     </resultMap>
 
     <select id="getAllPost" resultMap="PostMainMap">
-        SELECT * FROM post_data
+        SELECT
+            *
+        FROM
+            post_data
     </select>
     <select id="getByPostId" resultType="com.together.springStudy.model.PostsData">
-        SELECT * FROM post_data WHERE post_id = #{postId}
+        SELECT
+            *
+        FROM
+            post_data
+        WHERE
+            post_id = #{postId}
+    </select>
+
+    <select id="getAllCommentByPostId" resultType="com.together.springStudy.model.PostDetail">
+        SELECT
+            *
+        FROM
+            post
     </select>
 
     <insert id="createPost" parameterType="com.together.springStudy.model.PostsData">
-        INSERT INTO posts_data
-        (post_board_id, post_user_id, post_title, post_content, post_creation_date)
-        VALUES (#{postBoardId}, #{postUserId}, #{postTitle}, #{postContent}, #{postCreationDate})
+        INSERT INTO
+            posts_data
+            (post_board_id, post_user_id, post_title, post_content, post_creation_date)
+        VALUES
+            (#{postBoardId}, #{postUserId}, #{postTitle}, #{postContent}, #{postCreationDate})
     </insert>
 
     <insert id="createComment" parameterType="com.together.springStudy.model.PostComment">
-        INSERT INTO post_comment
-        (comment_user_id, comment_post_id, comment_content)
-        VALUES (#{commentUserId}, #{commentPostId}, #{commentContent})
+        INSERT INTO
+            post_comment
+            (comment_user_id, comment_post_id, comment_content)
+        VALUES
+            (#{commentUserId}, #{commentPostId}, #{commentContent})
     </insert>
     <insert id="createChildComment" parameterType="com.together.springStudy.model.PostComment">
-        INSERT INTO post_comment
-        (comment_user_id, comment_post_id, comment_parentnum, comment_content)
-        VALUES (#{commentUserId}, #{commentPostId},#{commentParentnum}, #{commentContent})
+        INSERT INTO
+            post_comment
+            (comment_user_id, comment_post_id, comment_parentnum, comment_content)
+        VALUES
+            (#{commentUserId}, #{commentPostId},#{commentParentnum}, #{commentContent})
     </insert>
 
     <insert id="createLike" parameterType="com.together.springStudy.model.PostLike">

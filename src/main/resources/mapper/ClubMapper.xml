@@ -12,15 +12,26 @@
     </resultMap>
 
     <select id="getAllClub" resultMap="ClubDataMap">
-        SELECT * FROM club_data
+        SELECT
+            *
+        FROM
+            club_data
     </select>
     <select id="getClubByPrimaryKey" resultType="com.together.springStudy.model.ClubData">
-        SELECT * FROM club_data WHERE club_id = #{clubId}
+        SELECT
+            *
+        FROM
+            club_data
+        WHERE
+            club_id = #{clubId}
     </select>
 
     <insert id="createClub" parameterType="com.together.springStudy.model.CreateClubData">
-        INSERT INTO club_data (club_leader_id, club_name, club_description)
-        VALUES ( #{clubLeaderId}, #{clubName}, #{clubDescription})
+        INSERT INTO
+            club_data
+            (club_leader_id, club_name, club_description)
+        VALUES
+            (#{clubLeaderId}, #{clubName}, #{clubDescription})
     </insert>
 
 </mapper>
