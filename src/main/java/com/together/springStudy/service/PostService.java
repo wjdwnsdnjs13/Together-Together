@@ -26,7 +26,7 @@ public class PostService {
 
 //    post 관련
     @Transactional
-    public List<PostMainData> getAllPost(){ return postMapper.getAllPost(); }
+    public List<PostMainData> getAllPostForMain(){ return postMapper.getAllPostForMain(); }
 
     @Transactional
     public Integer createPost(PostsData postsData){ return postMapper.createPost(postsData); }

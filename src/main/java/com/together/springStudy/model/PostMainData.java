@@ -6,8 +6,10 @@ import java.util.Date;
 
 @Data
 public class PostMainData {
+    int postId;
     int postBoardId;
     int postUserId;
+    String userName;
     String postTitle;
     String postContent;
     String postTag;

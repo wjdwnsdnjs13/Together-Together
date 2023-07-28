@@ -4,18 +4,48 @@
 <mapper namespace="com.together.springStudy.mapper.PostMapper">
 
     <resultMap id="PostMainMap" type="com.together.springStudy.model.PostMainData">
-        <id column="club_id" property="clubId"/>
-        <result column="club_leader_id" property="clubLeaderId"/>
-        <result column="club_board_id" property="clubBoardId"/>
-        <result column="club_name" property="clubName"/>
-        <result column="club_description" property="clubDescription"/>
+        <id column="post_id" property="postId"/>
+        <result column="post_board_id" property="postBoardId"/>
+        <result column="post_user_id" property="postUserId"/>
+        <result column="post_title" property="postTitle"/>
+        <result column="post_content" property="postContent"/>
+        <result column="post_tag" property="postTag"/>
+        <result column="post_creation_date" property="postCreationDate"/>
+        <result column="user_name" property="userName"/>
+        <result column="post_comment_count" property="postCommentCount"/>
+        <result column="post_like_count" property="postLikeCount"/>
     </resultMap>
 
-    <select id="getAllPost" resultMap="PostMainMap">
+    <select id="getAllPost">
         SELECT
             *
         FROM
             post_data
+    </select>
+
+    <select id="getAllPostForMain" resultMap="PostMainMap">
+        SELECT
+            posts_data.*,
+            (SELECT
+                user_name
+            FROM
+                user_data
+            WHERE
+                user_id = posts_data.post_user_id) as user_name,
+            (SELECT
+                count(*)
+            FROM
+                post_comment
+            WHERE
+                comment_post_id = posts_data.post_id) as post_comment_count,
+            (SELECT
+                count(*)
+            FROM
+                post_like
+            WHERE
+                like_post_id = posts_data.post_id) as post_like_count
+        FROM
+            posts_data;
     </select>
     <select id="getByPostId" resultType="com.together.springStudy.model.PostsData">
         SELECT
@@ -32,6 +62,7 @@
         FROM
             post
     </select>
+
 
     <insert id="createPost" parameterType="com.together.springStudy.model.PostsData">
         INSERT INTO

@@ -12,7 +12,7 @@ import java.util.List;
 @MapperScan
 public interface PostMapper {
 //    post 관련
-    List<PostMainData> getAllPost();
+    List<PostMainData> getAllPostForMain();
     int createPost(PostsData postsData);
     PostsData getByPostId(int postId);
 

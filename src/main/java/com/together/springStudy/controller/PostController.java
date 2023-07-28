@@ -31,9 +31,9 @@ public class PostController {
     PostService postService;
 
 //    post 관련
-    @GetMapping("/getAllPost")
-    public List<PostMainData> getAllPost(){
-        List<PostMainData> postMainDataList = postService.getAllPost();
+    @GetMapping("/getAllPostForMain")
+    public List<PostMainData> getAllPostForMain(){
+        List<PostMainData> postMainDataList = postService.getAllPostForMain();
         log.debug("mainPost : {}", postMainDataList);
         return postMainDataList;
 //        postMainDataList가 null일 경우 등에 대한 예외처리 해야할 듯?
