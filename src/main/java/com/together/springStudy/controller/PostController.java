@@ -1,9 +1,6 @@
 package com.together.springStudy.controller;
 
-import com.together.springStudy.model.PostComment;
-import com.together.springStudy.model.PostLike;
-import com.together.springStudy.model.PostMainData;
-import com.together.springStudy.model.PostsData;
+import com.together.springStudy.model.*;
 import com.together.springStudy.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,6 +36,14 @@ public class PostController {
 //        postMainDataList가 null일 경우 등에 대한 예외처리 해야할 듯?
     }
 
+    @PostMapping("/getPostForKeyword")
+    public List<PostMainData> getPostForKeyword(@RequestBody Keyword keyword){
+        log.debug("keyword : {}", keyword);
+        List<PostMainData> postMainDataList = postService.getPostForKeyword(keyword);
+        log.debug("keyword post : {}", postMainDataList);
+        return postMainDataList;
+
+    }
 
     @PostMapping("/createPost")
     public ResponseEntity<Void> createPost(@RequestBody PostsData postsData){

@@ -1,6 +1,7 @@
 package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.PostMapper;
+import com.together.springStudy.model.Keyword;
 import com.together.springStudy.model.PostComment;
 import com.together.springStudy.model.PostMainData;
 import com.together.springStudy.model.PostsData;
@@ -27,6 +28,9 @@ public class PostService {
 //    post 관련
     @Transactional
     public List<PostMainData> getAllPostForMain(){ return postMapper.getAllPostForMain(); }
+
+    @Transactional
+    public List<PostMainData> getPostForKeyword(Keyword keyword){ return postMapper.getPostForKeyword(keyword); }
 
     @Transactional
     public Integer createPost(PostsData postsData){ return postMapper.createPost(postsData); }

@@ -1,6 +1,7 @@
 package com.together.springStudy.mapper;
 
 import com.together.springStudy.model.ClubData;
+import com.together.springStudy.model.ClubJoinQueue;
 import com.together.springStudy.model.CreateClubData;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -10,4 +11,6 @@ import java.util.List;
 public interface ClubMapper {
     int createClub(CreateClubData createClubData);
     List<ClubData> getAllClub();
+
+//    int joinClub(ClubJoinQueue clubJoinQueue);
 }

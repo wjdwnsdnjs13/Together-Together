@@ -2,6 +2,7 @@ package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.ClubMapper;
 import com.together.springStudy.model.ClubData;
+import com.together.springStudy.model.ClubJoinQueue;
 import com.together.springStudy.model.CreateClubData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,4 +27,7 @@ public class ClubService {
     public List<ClubData> getAllClub(){
         return clubMapper.getAllClub();
     }
+
+//    @Transactional
+//    public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }
 }

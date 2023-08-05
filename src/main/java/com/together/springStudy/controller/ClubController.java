@@ -1,6 +1,7 @@
 package com.together.springStudy.controller;
 
 import com.together.springStudy.model.ClubData;
+import com.together.springStudy.model.ClubJoinQueue;
 import com.together.springStudy.model.CreateClubData;
 import com.together.springStudy.model.UserData;
 import com.together.springStudy.service.ClubService;
@@ -41,4 +42,12 @@ public class ClubController {
 //        if(clubDataList != null) return clubDataList;
 //        else ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+//    @PostMapping("/joinClub")
+//    public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
+//        log.debug("joinClub : {}", clubJoinQueue);
+//        Integer result = clubService.joinClub(clubJoinQueue);
+//        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+//        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//    }
 }

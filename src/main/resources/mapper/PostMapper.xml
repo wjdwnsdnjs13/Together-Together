@@ -47,6 +47,37 @@
         FROM
             posts_data;
     </select>
+    <select id="getPostForKeyword" parameterType="com.together.springStudy.model.Keyword" resultMap="PostMainMap">
+        SELECT
+            posts_data.*,
+            (SELECT
+                user_name
+            FROM
+                user_data
+            WHERE
+            user_id = posts_data.post_user_id) as user_name,
+            (SELECT
+                count(*)
+            FROM
+                post_comment
+            WHERE
+                comment_post_id = posts_data.post_id) as post_comment_count,
+            (SELECT
+                count(*)
+            FROM
+                post_like
+            WHERE
+                like_post_id = posts_data.post_id) as post_like_count
+        FROM
+            posts_data
+        <where>
+            <if test="keyword != null">
+                posts_data.post_title like concat('%', #{keyword}, '%')
+                OR
+                posts_data.post_content like concat('%', #{keyword}, '%');
+            </if>
+        </where>
+    </select>
     <select id="getByPostId" resultType="com.together.springStudy.model.PostsData">
         SELECT
             *
