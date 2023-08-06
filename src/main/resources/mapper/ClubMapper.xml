@@ -33,6 +33,35 @@
         VALUES
             (#{clubLeaderId}, #{clubName}, #{clubDescription})
     </insert>
+    <insert id="createClubMaster" parameterType="com.together.springStudy.model.ClubMember">
+        INSERT INTO
+            club_member
+            (member_user_id, member_club_id, member_permission)
+        VALUES
+            (#{memberUserId}, #{memberClubId}, #{memberPermission})
+    </insert>
+
+    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">
+        INSERT INTO
+            club_join_queue
+            (join_user_id, join_club_id)
+        VALUES
+            (#{joinUserId}, #{joinClubId})
+    </insert>
+    
+    <insert id="joinClubApproval" parameterType="com.together.springStudy.model.ClubJoinQueue">
+        INSERT INTO
+            club_member
+            (member_user_id, member_club_id)
+        VALUES
+            (#{joinUserId}, #{joinClubId})
+    </insert>
+    <delete id="deleteJoinClub">
+        DELETE FROM
+            club_join_queue
+        WHERE
+            join_queue_id = #{joinQueueId}
+    </delete>
 
 <!--    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">-->
 <!--        INSERT INTO-->

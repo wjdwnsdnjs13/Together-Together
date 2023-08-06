@@ -28,7 +28,10 @@ public class ClubController {
     public ResponseEntity<Void> createClub(@RequestBody CreateClubData createClubData){
         log.debug("createClubData info : {}", createClubData);
         Integer result = clubService.createClub(createClubData);
-        if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        if (result.equals(1)) {
+            Integer masterCreateResult = clubService.
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
@@ -43,11 +46,26 @@ public class ClubController {
 //        else ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    @PostMapping("/joinClub")
-//    public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
-//        log.debug("joinClub : {}", clubJoinQueue);
-//        Integer result = clubService.joinClub(clubJoinQueue);
-//        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
-//        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
-//    }
+    @PostMapping("/joinClub")
+    public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
+        log.debug("joinClub : {}", clubJoinQueue);
+        Integer result = clubService.joinClub(clubJoinQueue);
+        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/joinClubApproval")
+    public ResponseEntity<Void> joinClubApproval(@RequestBody ClubJoinQueue clubJoinQueue){
+        log.debug("clubJoinQueue : {}", clubJoinQueue);
+        Integer result = clubService.joinClubApproval(clubJoinQueue);
+        if(result.equals(1)){
+            log.debug("가입 처리 완료. 큐에서 삭제를 진행합니다.");
+            Integer removeResult = clubService.deleteJoinClub(clubJoinQueue.getJoinQueueId());
+            if(removeResult.equals(1)) {
+                log.debug("큐에서 삭제를 완료했습니다.");
+                return ResponseEntity.status(HttpStatus.OK).build();
+            }
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }
