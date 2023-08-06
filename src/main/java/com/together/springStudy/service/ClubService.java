@@ -20,8 +20,8 @@ public class ClubService {
     ClubMapper clubMapper;
 
     @Transactional
-    public Integer createClub(CreateClubData createClubData){
-        return clubMapper.createClub(createClubData);
+    public Integer createClub(ClubData clubData){
+        return clubMapper.createClub(clubData);
     }
     @Transactional
     public Integer createClubMaster(ClubMember clubMember){
@@ -32,6 +32,9 @@ public class ClubService {
     public List<ClubData> getAllClub(){
         return clubMapper.getAllClub();
     }
+
+    @Transactional
+    public ClubData getClubByPrimaryKey(int clubId) { return clubMapper.getClubByPrimaryKey(clubId); }
 
     @Transactional
     public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }

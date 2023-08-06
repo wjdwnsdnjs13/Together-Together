@@ -26,7 +26,10 @@
             club_id = #{clubId}
     </select>
 
-    <insert id="createClub" parameterType="com.together.springStudy.model.CreateClubData">
+    <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">
+        <selectKey resultType="int" keyProperty="clubId" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         INSERT INTO
             club_data
             (club_leader_id, club_name, club_description)

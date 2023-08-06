@@ -10,11 +10,12 @@ import java.util.List;
 
 @Mapper
 public interface ClubMapper {
-    int createClub(CreateClubData createClubData);
+    int createClub(ClubData clubData);
     int createClubMaster(ClubMember clubMember);
 
     List<ClubData> getAllClub();
 
+    ClubData getClubByPrimaryKey(int clubId);
     int joinClub(ClubJoinQueue clubJoinQueue);
 
     int joinClubApproval(ClubJoinQueue clubJoinQueue);

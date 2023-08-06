@@ -1,9 +1,6 @@
 package com.together.springStudy.controller;
 
-import com.together.springStudy.model.ClubData;
-import com.together.springStudy.model.ClubJoinQueue;
-import com.together.springStudy.model.CreateClubData;
-import com.together.springStudy.model.UserData;
+import com.together.springStudy.model.*;
 import com.together.springStudy.service.ClubService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,14 +22,22 @@ public class ClubController {
     ClubService clubService;
 
     @PostMapping("/createClub")
-    public ResponseEntity<Void> createClub(@RequestBody CreateClubData createClubData){
-        log.debug("createClubData info : {}", createClubData);
-        Integer result = clubService.createClub(createClubData);
+    public ResponseEntity<Void> createClub(@RequestBody ClubData clubData){
+        log.debug("createClubData info : {}", clubData);
+        Integer result = clubService.createClub(clubData);
         if (result.equals(1)) {
-            Integer masterCreateResult = clubService.
-            return ResponseEntity.status(HttpStatus.CREATED).build();
+                if( clubData.getClubId() != 0){
+                    ClubMember clubMember = new ClubMember();
+                    log.debug("clubMember 객체 생성 확인 : {}", clubMember);
+                    clubMember.setMemberClubId(clubData.getClubId());
+                    clubMember.setMemberUserId(clubData.getClubLeaderId());
+                    clubMember.setMemberPermission(999);
+                    log.debug("clubMember 객체 데이터 확인 : {}", clubMember);
+                    Integer masterCreateResult = clubService.createClubMaster(clubMember);
+                    return ResponseEntity.status(HttpStatus.CREATED).build();
+                }
         }
-        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @GetMapping("/getAllClub")
@@ -45,6 +50,7 @@ public class ClubController {
 //        if(clubDataList != null) return clubDataList;
 //        else ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
 
     @PostMapping("/joinClub")
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){

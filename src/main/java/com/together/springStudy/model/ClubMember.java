@@ -8,5 +8,5 @@ public class ClubMember {
     int clubMemberId;
     int memberUserId;
     int memberClubId;
-    int memberPermision;
+    int memberPermission;
 }
