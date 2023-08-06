@@ -16,9 +16,13 @@ public interface ClubMapper {
 
     List<ClubMemberData> getClubMemberByClubId(int clubId);
 
+    List<ClubData> getClubForKeyword(Keyword keyword);
+
     ClubData getClubByPrimaryKey(int clubId);
     int joinClub(ClubJoinQueue clubJoinQueue);
 
     int joinClubApproval(ClubJoinQueue clubJoinQueue);
     int deleteJoinClub(int joinQueueId);
+
+    int updateClubRecruiting(ClubData clubData);
 }

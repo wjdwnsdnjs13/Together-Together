@@ -67,6 +67,14 @@ public class ClubController {
         return clubMemberDataList;
     }
 
+    @PostMapping("/getClubForKeyword")
+    public List<ClubData> getClubForKeyword(@RequestBody Keyword keyword){
+        log.debug("키워드 : {}", keyword);
+        List<ClubData> clubDataList = clubService.getClubForKeyword(keyword);
+        log.debug("불러온 클럽 리스트 : {}", clubDataList);
+        return clubDataList;
+    }
+
     @PostMapping("/joinClub")
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
         log.debug("joinClub : {}", clubJoinQueue);
@@ -89,5 +97,14 @@ public class ClubController {
             }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/updateClubRecruiting")
+    public ResponseEntity<Void> updateClubRecruiting(@RequestBody ClubData clubData){
+        if(clubData.getClubRecruiting() == 1) clubData.setClubRecruiting(0);
+        else clubData.setClubRecruiting(1);
+        Integer result = clubService.updateClubRecruiting(clubData);
+        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

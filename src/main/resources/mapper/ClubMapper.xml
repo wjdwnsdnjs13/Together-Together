@@ -58,7 +58,20 @@
             club_member.member_club_id = #{clubId}
         ORDER BY
             user_data.user_name;
+    </select>
 
+    <select id="getClubForKeyword" parameterType="com.together.springStudy.model.Keyword" resultMap="ClubDataMap">
+        SELECT
+            *
+        FROM
+            club_data
+        <where>
+            <if test="keyword != null">
+                club_name like concat('%', #{keyword}, '%')
+                OR
+                club_description like concat('%', #{keyword}, '%')
+            </if>
+        </where>
     </select>
 
     <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">
@@ -101,6 +114,14 @@
             join_queue_id = #{joinQueueId}
     </delete>
 
+    <update id="updateClubRecruiting" parameterType="com.together.springStudy.model.ClubData">
+        UPDATE
+            club_data
+        SET
+            club_recruiting = #{clubRecruiting}
+        WHERE
+            club_id = #{clubId}
+    </update>
 <!--    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">-->
 <!--        INSERT INTO-->
 <!--            club_join_queue-->

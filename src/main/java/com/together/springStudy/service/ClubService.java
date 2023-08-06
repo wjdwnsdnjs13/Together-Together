@@ -41,6 +41,9 @@ public class ClubService {
     public List<ClubMemberData> getClubMemberByClubId(int clubId) { return clubMapper.getClubMemberByClubId(clubId); }
 
     @Transactional
+    public List<ClubData> getClubForKeyword(Keyword keyword) { return clubMapper.getClubForKeyword(keyword); }
+
+    @Transactional
     public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }
 
 
@@ -52,5 +55,8 @@ public class ClubService {
     public Integer deleteJoinClub(int joinQueueId){
         return clubMapper.deleteJoinClub(joinQueueId);
     }
+
+    @Transactional
+    public Integer updateClubRecruiting(ClubData clubData){ return clubMapper.updateClubRecruiting(clubData); }
 
 }
