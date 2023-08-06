@@ -11,6 +11,13 @@
         <result column="club_description" property="clubDescription"/>
     </resultMap>
 
+    <resultMap id="ClubJoinQueueMap" type="com.together.springStudy.model.ClubJoinQueue">
+        <id column="join_queue_id" property="joinQueueId"/>
+        <result column="join_user_id" property="joinUserId"/>
+        <result column="join_club_id" property="joinClubId"/>
+        <result column="join_content" property="joinContent"/>
+    </resultMap>
+
     <select id="getAllClub" resultMap="ClubDataMap">
         SELECT
             *
@@ -24,6 +31,15 @@
             club_data
         WHERE
             club_id = #{clubId}
+    </select>
+
+    <select id="getJoinClubQueue" resultMap="ClubJoinQueueMap">
+        SELECT
+            *
+        FROM
+            club_join_queue
+        WHERE
+            join_club_id = #{clubId}
     </select>
 
     <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">

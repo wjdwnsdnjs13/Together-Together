@@ -51,6 +51,13 @@ public class ClubController {
 //        else ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @PostMapping("/getJoinClubQueue")
+    public List<ClubJoinQueue> getJoinClubQueue(@RequestBody ClubId clubId){
+        log.debug("불러오려는 clubJoinQueue : {}", clubId);
+        List<ClubJoinQueue> clubJoinQueueList = clubService.getJoinClubQueue(clubId.getClubId());
+        log.debug("클럽 가입 대기열 : {}", clubJoinQueueList);
+        return clubJoinQueueList;
+    }
 
     @PostMapping("/joinClub")
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
@@ -59,6 +66,7 @@ public class ClubController {
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
 
     @PostMapping("/joinClubApproval")
     public ResponseEntity<Void> joinClubApproval(@RequestBody ClubJoinQueue clubJoinQueue){

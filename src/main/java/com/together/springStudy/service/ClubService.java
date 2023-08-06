@@ -34,10 +34,14 @@ public class ClubService {
     }
 
     @Transactional
+    public List<ClubJoinQueue> getJoinClubQueue(int clubId) { return clubMapper.getJoinClubQueue(clubId); }
+
+    @Transactional
     public ClubData getClubByPrimaryKey(int clubId) { return clubMapper.getClubByPrimaryKey(clubId); }
 
     @Transactional
     public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }
+
 
     @Transactional
     public Integer joinClubApproval(ClubJoinQueue clubJoinQueue) {
