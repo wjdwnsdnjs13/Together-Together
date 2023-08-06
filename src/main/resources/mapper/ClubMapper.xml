@@ -18,6 +18,10 @@
         <result column="join_content" property="joinContent"/>
     </resultMap>
 
+    <resultMap id="ClubMemberDataMap" type="com.together.springStudy.model.ClubMemberData">
+        <id column="user_nickname" property="userNickname"/>
+    </resultMap>
+
     <select id="getAllClub" resultMap="ClubDataMap">
         SELECT
             *
@@ -40,6 +44,21 @@
             club_join_queue
         WHERE
             join_club_id = #{clubId}
+    </select>
+
+    <select id="getClubMemberByClubId" resultMap="ClubMemberDataMap">
+        SELECT
+            user_data.user_nickname
+        FROM
+            club_member
+        INNER JOIN
+            user_data ON
+            club_member.member_user_id = user_data.user_id
+        WHERE
+            club_member.member_club_id = #{clubId}
+        ORDER BY
+            user_data.user_name;
+
     </select>
 
     <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">

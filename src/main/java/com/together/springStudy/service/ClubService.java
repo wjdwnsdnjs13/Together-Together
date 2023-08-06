@@ -1,14 +1,12 @@
 package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.ClubMapper;
-import com.together.springStudy.model.ClubData;
-import com.together.springStudy.model.ClubJoinQueue;
-import com.together.springStudy.model.ClubMember;
-import com.together.springStudy.model.CreateClubData;
+import com.together.springStudy.model.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -38,6 +36,9 @@ public class ClubService {
 
     @Transactional
     public ClubData getClubByPrimaryKey(int clubId) { return clubMapper.getClubByPrimaryKey(clubId); }
+
+    @Transactional
+    public List<ClubMemberData> getClubMemberByClubId(int clubId) { return clubMapper.getClubMemberByClubId(clubId); }
 
     @Transactional
     public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }

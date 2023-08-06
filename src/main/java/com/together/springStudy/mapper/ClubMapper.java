@@ -1,9 +1,6 @@
 package com.together.springStudy.mapper;
 
-import com.together.springStudy.model.ClubData;
-import com.together.springStudy.model.ClubJoinQueue;
-import com.together.springStudy.model.ClubMember;
-import com.together.springStudy.model.CreateClubData;
+import com.together.springStudy.model.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -16,6 +13,8 @@ public interface ClubMapper {
     List<ClubData> getAllClub();
 
     List<ClubJoinQueue> getJoinClubQueue(int clubId);
+
+    List<ClubMemberData> getClubMemberByClubId(int clubId);
 
     ClubData getClubByPrimaryKey(int clubId);
     int joinClub(ClubJoinQueue clubJoinQueue);
