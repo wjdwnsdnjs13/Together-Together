@@ -184,7 +184,7 @@
         VALUES
             (#{commentUserId}, #{commentPostId}, #{commentContent})
     </insert>
-    <insert id="createChildComment" parameterType="com.together.springStudy.model.PostComment">
+    <insert id="createReply" parameterType="com.together.springStudy.model.PostComment">
         INSERT INTO
             post_comment
             (comment_user_id, comment_post_id, comment_parentnum, comment_content)

@@ -50,6 +50,6 @@ public class PostService {
     public int createComment(PostComment postComment){ return postMapper.createComment(postComment); }
 
     @Transactional
-    public int createChildComment(PostComment postComment){ return postMapper.createChildComment(postComment); }
+    public int createReply(PostComment postComment){ return postMapper.createReply(postComment); }
 
 }
