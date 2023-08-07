@@ -30,6 +30,9 @@ public class PostService {
     public List<PostMainData> getAllPostForMain(){ return postMapper.getAllPostForMain(); }
 
     @Transactional
+    public PostMainData getPostByPrimaryKey(int postId){ return postMapper.getPostByPrimaryKey(postId); }
+
+    @Transactional
     public List<PostMainData> getPostForKeyword(Keyword keyword){ return postMapper.getPostForKeyword(keyword); }
 
     @Transactional

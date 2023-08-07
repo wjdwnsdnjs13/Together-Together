@@ -36,6 +36,14 @@ public class PostController {
 //        postMainDataList가 null일 경우 등에 대한 예외처리 해야할 듯?
     }
 
+    @PostMapping("/getPostByPrimaryKey")
+    public PostMainData getPostByPrimaryKey(@RequestBody PostId postId){
+        log.debug("파라미터 : {}", postId);
+        PostMainData postMainData = postService.getPostByPrimaryKey(postId.getPostId());
+        log.debug("postData : {}", postMainData);
+        return postMainData;
+    }
+
     @PostMapping("/getPostForKeyword")
     public List<PostMainData> getPostForKeyword(@RequestBody Keyword keyword){
         log.debug("keyword : {}", keyword);

@@ -75,6 +75,7 @@ public class ClubController {
         return clubDataList;
     }
 
+//    가입된 동아리 목록 조회
     @PostMapping("/getAffiliatedClub")
     public List<ClubData> getAffiliatedClub(@RequestBody UserId userId){
         log.debug("userId : {}", userId);

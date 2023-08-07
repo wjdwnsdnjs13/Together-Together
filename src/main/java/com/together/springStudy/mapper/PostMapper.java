@@ -14,6 +14,8 @@ import java.util.List;
 public interface PostMapper {
 //    post 관련
     List<PostMainData> getAllPostForMain();
+
+    PostMainData getPostByPrimaryKey(int postId);
     List<PostMainData> getPostForKeyword(Keyword keyword);
     int createPost(PostsData postsData);
     PostsData getByPostId(int postId);
