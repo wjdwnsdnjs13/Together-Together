@@ -10,6 +10,8 @@ public interface ClubMapper {
     int createClub(ClubData clubData);
     int createClubMaster(ClubMember clubMember);
 
+    ClubData getclubByClubName(String clubName);
+
     List<ClubData> getAllClub();
 
     List<ClubData> getAffiliatedClub(int userId);

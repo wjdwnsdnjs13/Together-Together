@@ -40,6 +40,17 @@ public class ClubController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @PostMapping("/getclubByClubName")
+    public ResponseEntity<Void> getclubByClubName(@RequestBody ClubName clubName){
+        log.debug("ClubName : {}", clubName);
+        ClubData clubData = clubService.getclubByClubName(clubName.getClubName());
+        log.debug("불러온 clubData : {}",clubData);
+        if(clubData == null || !clubData.getClubName().toLowerCase().equals(clubName.getClubName().toLowerCase())){
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
     @GetMapping("/getAllClub")
     public List<ClubData> getAllClub(){
         log.debug("getAllClub play.");
