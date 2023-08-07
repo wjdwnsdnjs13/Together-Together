@@ -86,7 +86,7 @@
             club_member.member_user_id = #{userId}
     </select>
 
-    <select id="getclubByClubName" resultType="com.together.springStudy.model.ClubData">
+    <select id="getClubByClubName" resultType="com.together.springStudy.model.ClubData">
         SELECT
             club_name
         FROM

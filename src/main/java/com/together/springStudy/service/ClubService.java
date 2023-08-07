@@ -27,7 +27,7 @@ public class ClubService {
     }
 
     @Transactional
-    public ClubData getclubByClubName(String clubName) { return clubMapper.getclubByClubName(clubName); }
+    public ClubData getClubByClubName(String clubName) { return clubMapper.getClubByClubName(clubName); }
 
     @Transactional
     public List<ClubData> getAllClub(){

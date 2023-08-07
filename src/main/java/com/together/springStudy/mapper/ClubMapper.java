@@ -10,7 +10,7 @@ public interface ClubMapper {
     int createClub(ClubData clubData);
     int createClubMaster(ClubMember clubMember);
 
-    ClubData getclubByClubName(String clubName);
+    ClubData getClubByClubName(String clubName);
 
     List<ClubData> getAllClub();
 
