@@ -44,6 +44,13 @@ public class PostController {
         return postMainData;
     }
 
+    @GetMapping("/getAllNotice")
+    public List<PostMainData> getAllNotice(){
+        List<PostMainData> postMainDataList = postService.getPostByBoardId(1);
+        log.debug("postMainDataList : {}", postMainDataList);
+        return postMainDataList;
+    }
+
     @PostMapping("/getPostForKeyword")
     public List<PostMainData> getPostForKeyword(@RequestBody Keyword keyword){
         log.debug("keyword : {}", keyword);
