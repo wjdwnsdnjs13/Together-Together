@@ -122,6 +122,19 @@
         WHERE
             club_id = #{clubId}
     </update>
+    
+    <select id="getAffiliatedClub" resultMap="ClubDataMap">
+        SELECT
+            club_data.*
+        FROM
+            club_data
+        INNER JOIN
+            club_member ON
+            club_data.club_id = club_member.member_club_id
+        WHERE
+            club_member.member_user_id = #{userId}
+    </select>
+    
 <!--    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">-->
 <!--        INSERT INTO-->
 <!--            club_join_queue-->

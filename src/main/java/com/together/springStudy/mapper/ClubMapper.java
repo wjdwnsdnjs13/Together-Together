@@ -12,6 +12,8 @@ public interface ClubMapper {
 
     List<ClubData> getAllClub();
 
+    List<ClubData> getAffiliatedClub(int userId);
+
     List<ClubJoinQueue> getJoinClubQueue(int clubId);
 
     List<ClubMemberData> getClubMemberByClubId(int clubId);

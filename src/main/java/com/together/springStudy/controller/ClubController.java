@@ -75,6 +75,14 @@ public class ClubController {
         return clubDataList;
     }
 
+    @PostMapping("/getAffiliatedClub")
+    public List<ClubData> getAffiliatedClub(@RequestBody UserId userId){
+        log.debug("userId : {}", userId);
+        List<ClubData> clubDataList = clubService.getAffiliatedClub(userId.getUserId());
+        log.debug("동아리 목록 : {}", clubDataList);
+        return clubDataList;
+    }
+
     @PostMapping("/joinClub")
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
         log.debug("joinClub : {}", clubJoinQueue);
