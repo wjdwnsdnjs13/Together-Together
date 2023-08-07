@@ -53,6 +53,14 @@ public class PostController {
 
     }
 
+    @PostMapping("/getPostsByUserId")
+    public List<PostMainData> getPostsByUserId(@RequestBody UserId userId){
+        log.debug("{}", userId);
+        List<PostMainData> postMainDataList = postService.getPostsByUserId(userId.getUserId());
+        log.debug("가져온 postData : {}", postMainDataList);
+        return postMainDataList;
+    }
+
     @PostMapping("/createPost")
     public ResponseEntity<Void> createPost(@RequestBody PostsData postsData){
         log.debug("postData : {}", postsData.toString());

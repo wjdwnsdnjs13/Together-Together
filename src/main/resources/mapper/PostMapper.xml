@@ -106,14 +106,35 @@
             </if>
         </where>
     </select>
-    <select id="getByPostId" resultType="com.together.springStudy.model.PostsData">
+
+    <select id="getPostsByUserId" resultMap="PostMainMap">
         SELECT
-            *
+            posts_data.*,
+            (SELECT
+                user_name
+            FROM
+                user_data
+            WHERE
+                user_id = posts_data.post_user_id) as user_name,
+            (SELECT
+                count(*)
+            FROM
+                post_comment
+            WHERE
+                comment_post_id = posts_data.post_id) as post_comment_count,
+            (SELECT
+                count(*)
+            FROM
+                post_like
+            WHERE
+                like_post_id = posts_data.post_id) as post_like_count
         FROM
-            post_data
+            posts_data
         WHERE
-            post_id = #{postId}
+            posts_data.post_user_id = #{userId}
     </select>
+
+
 
     <select id="getAllCommentByPostId" resultType="com.together.springStudy.model.PostDetail">
         SELECT

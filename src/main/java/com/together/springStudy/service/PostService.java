@@ -39,7 +39,7 @@ public class PostService {
     public Integer createPost(PostsData postsData){ return postMapper.createPost(postsData); }
 
     @Transactional
-    public PostsData getByPostId(int postId){ return postMapper.getByPostId(postId); }
+    public List<PostMainData> getPostsByUserId(int userId){ return postMapper.getPostsByUserId(userId); }
 
 
 //    댓글 관련

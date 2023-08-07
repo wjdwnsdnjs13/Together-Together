@@ -18,7 +18,7 @@ public interface PostMapper {
     PostMainData getPostByPrimaryKey(int postId);
     List<PostMainData> getPostForKeyword(Keyword keyword);
     int createPost(PostsData postsData);
-    PostsData getByPostId(int postId);
+    List<PostMainData> getPostsByUserId(int userId);
 
 //    댓글 관련
     int createComment(PostComment postComment);
