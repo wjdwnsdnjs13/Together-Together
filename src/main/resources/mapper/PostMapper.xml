@@ -134,7 +134,32 @@
             posts_data.post_user_id = #{userId}
     </select>
 
-
+    <select id="getPostByBoardId" resultMap="PostMainMap">
+        SELECT
+            posts_data.*,
+            (SELECT
+                user_name
+            FROM
+                user_data
+            WHERE
+                user_id = posts_data.post_user_id) as user_name,
+            (SELECT
+                count(*)
+            FROM
+                post_comment
+            WHERE
+                comment_post_id = posts_data.post_id) as post_comment_count,
+            (SELECT
+                count(*)
+            FROM
+                post_like
+            WHERE
+                like_post_id = posts_data.post_id) as post_like_count
+        FROM
+            posts_data
+        WHERE
+            posts_data.post_board_id = #{postBoardId}
+    </select>
 
     <select id="getAllCommentByPostId" resultType="com.together.springStudy.model.PostDetail">
         SELECT
