@@ -16,6 +16,15 @@
         <result column="post_like_count" property="postLikeCount"/>
     </resultMap>
 
+    <resultMap id="PostCommentDataMap" type="com.together.springStudy.model.PostCommentData">
+        <id column="comment_id" property="commentId"/>
+        <result column="comment_user_id" property="commentUserId"/>
+        <result column="comment_post_id" property="commentPostId"/>
+        <result column="comment_parentnum" property="commentParentnum"/>
+        <result column="comment_content" property="commentContent"/>
+        <result column="user_nickname" property="userNickname"/>
+    </resultMap>
+
     <select id="getAllPost">
         SELECT
             *
@@ -161,11 +170,19 @@
             posts_data.post_board_id = #{postBoardId}
     </select>
 
-    <select id="getAllCommentByPostId" resultType="com.together.springStudy.model.PostDetail">
+    <select id="getAllCommentByPostId" resultMap="PostCommentDataMap">
         SELECT
-            *
+            post_comment.*,
+            (SELECT
+                user_nickname
+            FROM
+                user_data
+            WHERE
+                user_id = post_comment.comment_user_id) as user_nickname
         FROM
-            post
+            post_comment
+        WHERE
+            post_comment.comment_post_id = #{postId};
     </select>
 
 

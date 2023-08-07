@@ -1,10 +1,7 @@
 package com.together.springStudy.service;
 
 import com.together.springStudy.mapper.PostMapper;
-import com.together.springStudy.model.Keyword;
-import com.together.springStudy.model.PostComment;
-import com.together.springStudy.model.PostMainData;
-import com.together.springStudy.model.PostsData;
+import com.together.springStudy.model.*;
 import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +48,8 @@ public class PostService {
 
     @Transactional
     public int createReply(PostComment postComment){ return postMapper.createReply(postComment); }
+
+    @Transactional
+    public List<PostCommentData> getAllCommentByPostId(int postId){ return postMapper.getAllCommentByPostId(postId);}
 
 }

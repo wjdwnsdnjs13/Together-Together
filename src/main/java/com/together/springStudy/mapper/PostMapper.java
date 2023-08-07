@@ -1,9 +1,6 @@
 package com.together.springStudy.mapper;
 
-import com.together.springStudy.model.Keyword;
-import com.together.springStudy.model.PostComment;
-import com.together.springStudy.model.PostMainData;
-import com.together.springStudy.model.PostsData;
+import com.together.springStudy.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
 
@@ -26,4 +23,6 @@ public interface PostMapper {
 //    댓글 관련
     int createComment(PostComment postComment);
     int createReply(PostComment postComment);
+
+    List<PostCommentData> getAllCommentByPostId(int postId);
 }

@@ -99,10 +99,13 @@ public class PostController {
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
-//    @GetMapping("/getAllCommentByPostId")
-//    public List<PostComment> getAllCommentByPostId(int PostId){
-//        return postCommentList;
-//    }
+    @PostMapping("/getAllCommentByPostId")
+    public List<PostCommentData> getAllCommentByPostId(@RequestBody PostId postId){
+        log.debug("댓글 불러올 게시물 id : {}", postId);
+        List<PostCommentData> postCommentDataList = postService.getAllCommentByPostId(postId.getPostId());
+        log.debug("불러온 댓글 : {}", postCommentDataList);
+        return postCommentDataList;
+    }
 
 //    좋아요 관련
     @PostMapping("/createLike")
