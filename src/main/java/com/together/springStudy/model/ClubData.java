@@ -9,5 +9,5 @@ public class ClubData {
     int clubBoardId;
     String clubName;
     String clubDescription;
-    int clubRecruiting;
+    boolean clubRecruiting;
 }

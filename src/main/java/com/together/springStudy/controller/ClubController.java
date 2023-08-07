@@ -101,8 +101,9 @@ public class ClubController {
 
     @PostMapping("/updateClubRecruiting")
     public ResponseEntity<Void> updateClubRecruiting(@RequestBody ClubData clubData){
-        if(clubData.getClubRecruiting() == 1) clubData.setClubRecruiting(0);
-        else clubData.setClubRecruiting(1);
+        log.debug("현재 가입 여부 상태 : {}", clubData.isClubRecruiting());
+        clubData.setClubRecruiting(!clubData.isClubRecruiting());
+        log.debug("바뀐 가입 여부 상태 : {}", clubData.isClubRecruiting());
         Integer result = clubService.updateClubRecruiting(clubData);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
