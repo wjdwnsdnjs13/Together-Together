@@ -36,9 +36,6 @@ public class PostService {
     public BoardId getBoardIdByClubId(int clubId){ return postMapper.getBoardIdByClubId(clubId); }
 
     @Transactional
-    public List<PostMainData> getPostsByClubId(int clubId){ return postMapper.getPostsByClubId(clubId); }
-
-    @Transactional
     public List<PostMainData> getPostForKeyword(Keyword keyword){ return postMapper.getPostForKeyword(keyword); }
 
     @Transactional

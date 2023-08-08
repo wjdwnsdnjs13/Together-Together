@@ -127,10 +127,6 @@
             1
     </select>
 
-    <select id="getPostsByClubId" resultMap="PostMainMap">
-
-    </select>
-    
     <select id="getPostsByUserId" resultMap="PostMainMap">
         SELECT
             posts_data.*,

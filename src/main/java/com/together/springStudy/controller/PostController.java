@@ -51,14 +51,6 @@ public class PostController {
         return postMainDataList;
     }
 
-    @PostMapping("/getPostsByClubId")
-    public List<PostMainData> getPostsByClubId(ClubId clubId){
-        log.debug("{}", clubId);
-        List<PostMainData> postMainDataList = postService.getPostsByClubId(clubId.getClubId());
-        log.debug("{}", postMainDataList);
-        return postMainDataList;
-    }
-
     @PostMapping("/getPostForKeyword")
     public List<PostMainData> getPostForKeyword(@RequestBody Keyword keyword){
         log.debug("keyword : {}", keyword);
@@ -73,6 +65,16 @@ public class PostController {
         log.debug("{}", userId);
         List<PostMainData> postMainDataList = postService.getPostsByUserId(userId.getUserId());
         log.debug("가져온 postData : {}", postMainDataList);
+        return postMainDataList;
+    }
+
+    @PostMapping("/getPostsByClubId")
+    public List<PostMainData> getPostsByClubId(@RequestBody ClubId clubId){
+        log.debug("{}", clubId);
+        BoardId boardId = postService.getBoardIdByClubId(clubId.getClubId());
+//        if(boardId != null)
+        List<PostMainData> postMainDataList = postService.getPostByBoardId(boardId.getBoardId());
+        log.debug("{}", postMainDataList);
         return postMainDataList;
     }
 
