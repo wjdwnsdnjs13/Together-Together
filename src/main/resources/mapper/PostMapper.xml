@@ -54,7 +54,9 @@
             WHERE
                 like_post_id = posts_data.post_id) as post_like_count
         FROM
-            posts_data;
+            posts_data
+        ORDER BY
+            post_creation_date;
     </select>
 
     <select id="getPostByPrimaryKey" resultType="com.together.springStudy.model.PostMainData">
@@ -82,6 +84,8 @@
             posts_data
         WHERE
             posts_data.post_id = #{postId}
+        ORDER BY
+            post_creation_date
     </select>
 
     <select id="getPostForKeyword" parameterType="com.together.springStudy.model.Keyword" resultMap="PostMainMap">
@@ -107,6 +111,8 @@
                 like_post_id = posts_data.post_id) as post_like_count
         FROM
             posts_data
+        ORDER BY
+            post_creation_date
         <where>
             <if test="keyword != null">
                 posts_data.post_title like concat('%', #{keyword}, '%')
@@ -152,6 +158,8 @@
             posts_data
         WHERE
             posts_data.post_user_id = #{userId}
+        ORDER BY
+            post_creation_date
     </select>
 
     <select id="getPostByBoardId" resultMap="PostMainMap">
@@ -179,6 +187,8 @@
             posts_data
         WHERE
             posts_data.post_board_id = #{postBoardId}
+        ORDER BY
+            post_creation_date
     </select>
 
     <select id="getAllCommentByPostId" resultMap="PostCommentDataMap">
@@ -193,7 +203,9 @@
         FROM
             post_comment
         WHERE
-            post_comment.comment_post_id = #{postId};
+            post_comment.comment_post_id = #{postId}
+        ORDER BY
+            comment_creation_date
     </select>
 
 
