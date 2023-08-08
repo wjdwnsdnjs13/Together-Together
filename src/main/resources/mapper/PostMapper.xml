@@ -11,7 +11,7 @@
         <result column="post_content" property="postContent"/>
         <result column="post_tag" property="postTag"/>
         <result column="post_creation_date" property="postCreationDate"/>
-        <result column="user_name" property="userName"/>
+        <result column="user_nickname" property="userNickname"/>
         <result column="post_comment_count" property="postCommentCount"/>
         <result column="post_like_count" property="postLikeCount"/>
     </resultMap>
@@ -36,11 +36,11 @@
         SELECT
             posts_data.*,
             (SELECT
-                user_name
+                user_nickname
             FROM
                 user_data
             WHERE
-                user_id = posts_data.post_user_id) as user_name,
+                user_id = posts_data.post_user_id) as user_nickname,
             (SELECT
                 count(*)
             FROM
@@ -61,11 +61,11 @@
         SELECT
             posts_data.*,
             (SELECT
-                user_name
+                user_nickname
             FROM
                 user_data
             WHERE
-                user_id = posts_data.post_user_id) as user_name,
+                user_id = posts_data.post_user_id) as user_nickname,
             (SELECT
                 count(*)
             FROM
@@ -88,11 +88,11 @@
         SELECT
             posts_data.*,
             (SELECT
-                user_name
+                user_nickname
             FROM
                 user_data
             WHERE
-            user_id = posts_data.post_user_id) as user_name,
+            user_id = posts_data.post_user_id) as user_nickname,
             (SELECT
                 count(*)
             FROM
@@ -131,11 +131,11 @@
         SELECT
             posts_data.*,
             (SELECT
-                user_name
+                user_nickname
             FROM
                 user_data
             WHERE
-                user_id = posts_data.post_user_id) as user_name,
+                user_id = posts_data.post_user_id) as user_nickname,
             (SELECT
                 count(*)
             FROM
@@ -158,11 +158,11 @@
         SELECT
             posts_data.*,
             (SELECT
-                user_name
+                user_nickname
             FROM
                 user_data
             WHERE
-                user_id = posts_data.post_user_id) as user_name,
+                user_id = posts_data.post_user_id) as user_nickname,
             (SELECT
                 count(*)
             FROM
