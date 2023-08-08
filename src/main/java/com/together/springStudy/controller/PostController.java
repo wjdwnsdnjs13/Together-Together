@@ -82,8 +82,7 @@ public class PostController {
     @PostMapping("/createComment")
     public ResponseEntity<Void> createComment(@RequestBody PostComment postComment){
         log.debug("postComment : {}", postComment);
-//        댓글 작성 시간 필요할 듯?
-//        postComment.setCommentCreationDate(new Timestamp(System.currentTimeMillis()));
+        postComment.setCommentCreationDate(new Timestamp(System.currentTimeMillis()));
         Integer result = (postComment.getCommentParentnum() == 0)?postService.createComment(postComment):postService.createReply(postComment);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
