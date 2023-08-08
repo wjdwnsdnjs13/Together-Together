@@ -2,6 +2,8 @@ package com.together.springStudy.model;
 
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
 public class PostCommentData {
     int commentId;
@@ -9,5 +11,6 @@ public class PostCommentData {
     int commentPostId;
     int commentParentnum;
     String commentContent;
+    Date commentCreationDate;
     String userNickname;
 }
