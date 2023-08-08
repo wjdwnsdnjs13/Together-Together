@@ -51,6 +51,14 @@ public class PostController {
         return postMainDataList;
     }
 
+    @PostMapping("/getPostsByClubId")
+    public List<PostMainData> getPostsByClubId(ClubId clubId){
+        log.debug("{}", clubId);
+        List<PostMainData> postMainDataList = postService.getPostsByClubId(clubId.getClubId());
+        log.debug("{}", postMainDataList);
+        return postMainDataList;
+    }
+
     @PostMapping("/getPostForKeyword")
     public List<PostMainData> getPostForKeyword(@RequestBody Keyword keyword){
         log.debug("keyword : {}", keyword);
@@ -76,6 +84,20 @@ public class PostController {
         Integer result = postService.createPost(postsData);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/createPostByClubId")
+    public ResponseEntity<Void> createPostByClubId(@RequestBody ClubPostParam clubPostParam){
+        log.debug("{}", clubPostParam);
+        BoardId boardId = postService.getBoardIdByClubId(clubPostParam.getClubId());
+        if(boardId != null){
+            clubPostParam.setPostBoardId(boardId.getBoardId());
+            clubPostParam.setPostCreationDate(new Timestamp(System.currentTimeMillis()));
+            log.debug("{}", clubPostParam);
+            Integer result = postService.createPost(clubPostParam);
+            if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
 //    댓글 관련

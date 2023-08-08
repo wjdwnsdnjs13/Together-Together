@@ -16,6 +16,10 @@ public interface PostMapper {
 
     List<PostMainData> getPostByBoardId(int postBoardId);
 
+    BoardId getBoardIdByClubId(int clubId);
+
+    List<PostMainData> getPostsByClubId(int clubId);
+
     List<PostMainData> getPostForKeyword(Keyword keyword);
     int createPost(PostsData postsData);
     List<PostMainData> getPostsByUserId(int userId);

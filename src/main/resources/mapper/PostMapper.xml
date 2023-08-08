@@ -116,6 +116,21 @@
         </where>
     </select>
 
+    <select id="getBoardIdByClubId" resultType="com.together.springStudy.model.BoardId">
+        SELECT
+            club_board_id as board_id
+        FROM
+            club_data
+        WHERE
+            club_id = #{clubId}
+        LIMIT
+            1
+    </select>
+
+    <select id="getPostsByClubId" resultMap="PostMainMap">
+
+    </select>
+    
     <select id="getPostsByUserId" resultMap="PostMainMap">
         SELECT
             posts_data.*,
