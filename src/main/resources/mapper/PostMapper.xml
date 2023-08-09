@@ -111,15 +111,15 @@
                 like_post_id = posts_data.post_id) as post_like_count
         FROM
             posts_data
-        ORDER BY
-            post_creation_date
         <where>
             <if test="keyword != null">
                 posts_data.post_title like concat('%', #{keyword}, '%')
                 OR
-                posts_data.post_content like concat('%', #{keyword}, '%');
+                posts_data.post_content like concat('%', #{keyword}, '%')
             </if>
         </where>
+        ORDER BY
+            post_creation_date
     </select>
 
     <select id="getBoardIdByClubId" resultType="com.together.springStudy.model.BoardId">
