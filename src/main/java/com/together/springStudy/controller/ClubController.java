@@ -33,10 +33,10 @@ public class ClubController {
         BoardData boardData = new BoardData();
         boardData.setBoardName(clubData.getClubName() + "동아리 게시판");
         boardData.setBoardType(1);
-        boardData.setBoardId((lastClubId.getClubId() * 10) + 1);
+        boardData.setBoardId((lastClubId.getClubId() * 10) + 11);
         Integer boardCreateResult = postService.createBoardData(boardData);
         if(boardCreateResult.equals(1)){
-            clubData.setClubBoardId((lastClubId.getClubId() * 10) + 1);
+            clubData.setClubBoardId((lastClubId.getClubId() * 10) + 11);
             Integer result = clubService.createClub(clubData);
             if (result.equals(1)) {
                 if( clubData.getClubId() != 0){
