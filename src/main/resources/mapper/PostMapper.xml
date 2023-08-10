@@ -14,6 +14,7 @@
         <result column="user_nickname" property="userNickname"/>
         <result column="post_comment_count" property="postCommentCount"/>
         <result column="post_like_count" property="postLikeCount"/>
+        <result column="post_like_id" property="postLikeId"/>
     </resultMap>
 
     <resultMap id="PostCommentDataMap" type="com.together.springStudy.model.PostCommentData">
@@ -52,9 +53,15 @@
             FROM
                 post_like
             WHERE
-                like_post_id = posts_data.post_id) as post_like_count
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
         FROM
             posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+        AND
+            post_like.like_user_id = #{userId}
         ORDER BY
             post_creation_date desc
     </select>
@@ -79,9 +86,15 @@
             FROM
                 post_like
             WHERE
-                like_post_id = posts_data.post_id) as post_like_count
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
         FROM
             posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+        AND
+            post_like.like_user_id = #{userId}
         WHERE
             posts_data.post_id = #{postId}
         ORDER BY
@@ -108,9 +121,15 @@
             FROM
                 post_like
             WHERE
-                like_post_id = posts_data.post_id) as post_like_count
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
         FROM
             posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+        AND
+            post_like.like_user_id = #{userId}
         <where>
             <if test="keyword != null">
                 posts_data.post_title like concat('%', #{keyword}, '%')
@@ -153,9 +172,15 @@
             FROM
                 post_like
             WHERE
-                like_post_id = posts_data.post_id) as post_like_count
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
         FROM
             posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+        AND
+            post_like.like_user_id = #{userId}
         WHERE
             posts_data.post_user_id = #{userId}
         ORDER BY
@@ -182,9 +207,15 @@
             FROM
                 post_like
             WHERE
-                like_post_id = posts_data.post_id) as post_like_count
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
         FROM
             posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+        AND
+            post_like.like_user_id = #{userId}
         WHERE
             posts_data.post_board_id = #{postBoardId}
         ORDER BY
@@ -241,6 +272,10 @@
     </insert>
 
     <insert id="createLike" parameterType="com.together.springStudy.model.PostLike">
-
+        INSERT INTO
+            post_like
+            (like_user_id, like_post_id)
+        VALUES
+            (#{likeUserId}, #{likePostId})
     </insert>
 </mapper>

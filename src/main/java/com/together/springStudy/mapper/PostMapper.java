@@ -10,9 +10,9 @@ import java.util.List;
 @MapperScan
 public interface PostMapper {
 //    post 관련
-    List<PostMainData> getAllPostForMain();
+    List<PostMainData> getAllPostForMain(int userId);
 
-    PostMainData getPostByPrimaryKey(int postId);
+    PostMainData getPostByPrimaryKey(PostId postId);
 
     List<PostMainData> getPostByBoardId(int postBoardId);
 
@@ -27,6 +27,9 @@ public interface PostMapper {
     int createReply(PostComment postComment);
 
     List<PostCommentData> getAllCommentByPostId(int postId);
+
+//    좋아요 관련
+    int createLike(PostLike postLike);
 
 //    게시판 관련
     int createBoardData(BoardData boardData);

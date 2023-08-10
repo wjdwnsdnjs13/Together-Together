@@ -24,10 +24,10 @@ public class PostService {
 
 //    post 관련
     @Transactional
-    public List<PostMainData> getAllPostForMain(){ return postMapper.getAllPostForMain(); }
+    public List<PostMainData> getAllPostForMain(int userId){ return postMapper.getAllPostForMain(userId); }
 
     @Transactional
-    public PostMainData getPostByPrimaryKey(int postId){ return postMapper.getPostByPrimaryKey(postId); }
+    public PostMainData getPostByPrimaryKey(PostId postId){ return postMapper.getPostByPrimaryKey(postId); }
 
     @Transactional
     public List<PostMainData> getPostByBoardId(int postBoardId){ return postMapper.getPostByBoardId(postBoardId); }
@@ -55,6 +55,10 @@ public class PostService {
     @Transactional
     public List<PostCommentData> getAllCommentByPostId(int postId){ return postMapper.getAllCommentByPostId(postId);}
 
+
+//    좋아요 관련
+    @Transactional
+    public int createLike(PostLike postLike){ return postMapper.createLike(postLike);}
 
 //    게시판 관련
     @Transactional

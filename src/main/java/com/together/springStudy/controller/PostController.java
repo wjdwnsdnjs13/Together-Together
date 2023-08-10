@@ -28,9 +28,9 @@ public class PostController {
     PostService postService;
 
 //    post 관련
-    @GetMapping("/getAllPostForMain")
-    public List<PostMainData> getAllPostForMain(){
-        List<PostMainData> postMainDataList = postService.getAllPostForMain();
+    @PostMapping("/getAllPostForMain")
+    public List<PostMainData> getAllPostForMain(@RequestBody UserId userId){
+        List<PostMainData> postMainDataList = postService.getAllPostForMain(userId.getUserId());
         log.debug("mainPost : {}", postMainDataList);
         return postMainDataList;
 //        postMainDataList가 null일 경우 등에 대한 예외처리 해야할 듯?
@@ -39,7 +39,7 @@ public class PostController {
     @PostMapping("/getPostByPrimaryKey")
     public PostMainData getPostByPrimaryKey(@RequestBody PostId postId){
         log.debug("파라미터 : {}", postId);
-        PostMainData postMainData = postService.getPostByPrimaryKey(postId.getPostId());
+        PostMainData postMainData = postService.getPostByPrimaryKey(postId);
         log.debug("postData : {}", postMainData);
         return postMainData;
     }
@@ -133,6 +133,9 @@ public class PostController {
 //    좋아요 관련
     @PostMapping("/createLike")
     public ResponseEntity<Void> createLike(@RequestBody PostLike postLike){
+        log.debug("createLike : {}", postLike);
+        Integer result = postService.createLike(postLike);
+        if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 }

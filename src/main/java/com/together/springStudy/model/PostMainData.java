@@ -16,4 +16,5 @@ public class PostMainData {
     Date postCreationDate;
     int postLikeCount;
     int postCommentCount;
+    int postLikeId;
 }
