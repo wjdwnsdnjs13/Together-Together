@@ -139,12 +139,14 @@ public class PostController {
     @PostMapping("/postLike")
     public ResponseEntity<Void> postLike(@RequestBody PostLike postLike){
         log.debug("createLike : {}", postLike);
-        PostLike postLikeResult = postService.getPostLike(postLike);
-        log.debug("{}", postLikeResult);
-        if(postLikeResult != null){
-            Integer result = postService.deleteLike(postLike);
-            if (result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        if(postLike.getLikeId() != 0){
+            PostLike postLikeResult = postService.getPostLike(postLike);
+            log.debug("{}", postLikeResult);
+            if(postLikeResult != null){
+                Integer result = postService.deleteLike(postLike);
+                if (result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            }
         }
         Integer result = postService.createLike(postLike);
         if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
