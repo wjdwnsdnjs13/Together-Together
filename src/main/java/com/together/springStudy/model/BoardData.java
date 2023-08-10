@@ -7,5 +7,5 @@ public class BoardData {
     int boardId;
     String boardName;
     String boardDescription;
-    String boardType;
+    int boardType;
 }

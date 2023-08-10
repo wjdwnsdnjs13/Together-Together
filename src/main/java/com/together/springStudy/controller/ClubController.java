@@ -2,6 +2,7 @@ package com.together.springStudy.controller;
 
 import com.together.springStudy.model.*;
 import com.together.springStudy.service.ClubService;
+import com.together.springStudy.service.PostService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,14 +22,23 @@ public class ClubController {
     @Autowired
     ClubService clubService;
 
+    @Autowired
+    PostService postService;
+
     @PostMapping("/createClub")
     public ResponseEntity<Void> createClub(@RequestBody ClubData clubData){
         log.debug("createClubData info : {}", clubData);
         ClubId lastClubId = clubService.getLastClubId();
         log.debug("마지막 클럽 id : {}", lastClubId);
-        clubData.setClubBoardId((lastClubId.getClubId() * 10) + 1);
-        Integer result = clubService.createClub(clubData);
-        if (result.equals(1)) {
+        BoardData boardData = new BoardData();
+        boardData.setBoardName(clubData.getClubName() + "동아리 게시판");
+        boardData.setBoardType(1);
+        boardData.setBoardId((lastClubId.getClubId() * 10) + 1);
+        Integer boardCreateResult = postService.createBoardData(boardData);
+        if(boardCreateResult.equals(1)){
+            clubData.setClubBoardId((lastClubId.getClubId() * 10) + 1);
+            Integer result = clubService.createClub(clubData);
+            if (result.equals(1)) {
                 if( clubData.getClubId() != 0){
                     ClubMember clubMember = new ClubMember();
                     log.debug("clubMember 객체 생성 확인 : {}", clubMember);
@@ -39,7 +49,9 @@ public class ClubController {
                     Integer masterCreateResult = clubService.createClubMaster(clubMember);
                     return ResponseEntity.status(HttpStatus.CREATED).build();
                 }
+            }
         }
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 

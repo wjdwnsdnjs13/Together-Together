@@ -27,4 +27,7 @@ public interface PostMapper {
     int createReply(PostComment postComment);
 
     List<PostCommentData> getAllCommentByPostId(int postId);
+
+//    게시판 관련
+    int createBoardData(BoardData boardData);
 }

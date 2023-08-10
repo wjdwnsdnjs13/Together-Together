@@ -55,4 +55,8 @@ public class PostService {
     @Transactional
     public List<PostCommentData> getAllCommentByPostId(int postId){ return postMapper.getAllCommentByPostId(postId);}
 
+
+//    게시판 관련
+    @Transactional
+    public int createBoardData(BoardData boardData){ return postMapper.createBoardData(boardData); }
 }

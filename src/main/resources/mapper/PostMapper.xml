@@ -209,6 +209,14 @@
     </select>
 
 
+    <insert id="createBoardData" parameterType="com.together.springStudy.model.BoardData">
+        INSERT INTO
+            board_data
+            (board_id, board_name, board_description, board_type)
+        VALUES
+            (#{boardId}, #{boardName}, #{boardDescription}, #{boardType})
+    </insert>
+
     <insert id="createPost" parameterType="com.together.springStudy.model.PostsData">
         INSERT INTO
             posts_data
