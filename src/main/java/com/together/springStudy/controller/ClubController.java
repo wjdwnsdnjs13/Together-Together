@@ -24,6 +24,9 @@ public class ClubController {
     @PostMapping("/createClub")
     public ResponseEntity<Void> createClub(@RequestBody ClubData clubData){
         log.debug("createClubData info : {}", clubData);
+        ClubId lastClubId = clubService.getLastClubId();
+        log.debug("마지막 클럽 id : {}", lastClubId);
+        clubData.setClubBoardId((lastClubId.getClubId() * 10) + 1);
         Integer result = clubService.createClub(clubData);
         if (result.equals(1)) {
                 if( clubData.getClubId() != 0){

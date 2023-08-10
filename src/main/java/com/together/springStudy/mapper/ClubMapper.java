@@ -23,6 +23,9 @@ public interface ClubMapper {
     List<ClubData> getClubForKeyword(Keyword keyword);
 
     ClubData getClubByPrimaryKey(int clubId);
+
+    ClubId getLastClubId();
+
     int joinClub(ClubJoinQueue clubJoinQueue);
 
     int joinClubApproval(ClubJoinQueue clubJoinQueue);

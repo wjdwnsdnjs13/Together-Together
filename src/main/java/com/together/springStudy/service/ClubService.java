@@ -50,6 +50,9 @@ public class ClubService {
     public List<ClubData> getClubForKeyword(Keyword keyword) { return clubMapper.getClubForKeyword(keyword); }
 
     @Transactional
+    public ClubId getLastClubId(){ return clubMapper.getLastClubId(); }
+
+    @Transactional
     public Integer joinClub(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClub(clubJoinQueue); }
 
     @Transactional

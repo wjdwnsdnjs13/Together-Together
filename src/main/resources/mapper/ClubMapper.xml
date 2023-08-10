@@ -95,15 +95,26 @@
             club_name = #{clubName}
     </select>
 
+    <select id="getLastClubId" resultType="com.together.springStudy.model.ClubId">
+        SELECT
+            club_id
+        FROM
+            club_data
+        ORDER BY
+            club_id DESC
+        LIMIT
+            1
+    </select>
+
     <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">
         <selectKey resultType="int" keyProperty="clubId" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO
             club_data
-            (club_leader_id, club_name, club_description)
+            (club_leader_id, club_name, club_description, club_board_id)
         VALUES
-            (#{clubLeaderId}, #{clubName}, #{clubDescription})
+            (#{clubLeaderId}, #{clubName}, #{clubDescription}, #{clubBoardId})
     </insert>
     <insert id="createClubMaster" parameterType="com.together.springStudy.model.ClubMember">
         INSERT INTO
