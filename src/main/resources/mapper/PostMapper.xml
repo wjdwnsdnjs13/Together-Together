@@ -245,7 +245,7 @@
         FROM
             post_like
         WHERE
-            like_id
+            like_id = #{likeId}
     </select>
 
     <insert id="createBoardData" parameterType="com.together.springStudy.model.BoardData">
