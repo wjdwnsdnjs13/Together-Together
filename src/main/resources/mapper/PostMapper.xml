@@ -217,7 +217,7 @@
         AND
             post_like.like_user_id = #{userId}
         WHERE
-            posts_data.post_board_id = #{postBoardId}
+            posts_data.post_board_id = #{boardId}
         ORDER BY
             post_creation_date desc
     </select>

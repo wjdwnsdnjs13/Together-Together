@@ -30,7 +30,7 @@ public class PostService {
     public PostMainData getPostByPrimaryKey(PostId postId){ return postMapper.getPostByPrimaryKey(postId); }
 
     @Transactional
-    public List<PostMainData> getPostByBoardId(int postBoardId){ return postMapper.getPostByBoardId(postBoardId); }
+    public List<PostMainData> getPostByBoardId(BoardId boardId){ return postMapper.getPostByBoardId(boardId); }
 
     @Transactional
     public BoardId getBoardIdByClubId(int clubId){ return postMapper.getBoardIdByClubId(clubId); }

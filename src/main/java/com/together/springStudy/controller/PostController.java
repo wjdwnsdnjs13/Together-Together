@@ -44,9 +44,12 @@ public class PostController {
         return postMainData;
     }
 
-    @GetMapping("/getAllNotice")
-    public List<PostMainData> getAllNotice(){
-        List<PostMainData> postMainDataList = postService.getPostByBoardId(1);
+    @PostMapping("/getAllNotice")
+    public List<PostMainData> getAllNotice(UserId userId){
+        BoardId boardId = new BoardId();
+        boardId.setBoardId(1);
+        boardId.setUserId(userId.getUserId());
+        List<PostMainData> postMainDataList = postService.getPostByBoardId(boardId);
         log.debug("postMainDataList : {}", postMainDataList);
         return postMainDataList;
     }
@@ -70,10 +73,12 @@ public class PostController {
 
     @PostMapping("/getPostsByClubId")
     public List<PostMainData> getPostsByClubId(@RequestBody ClubId clubId){
-        log.debug("{}", clubId);
+        log.debug("동아리 pk로 게시물 조회 : {}", clubId);
         BoardId boardId = postService.getBoardIdByClubId(clubId.getClubId());
+        boardId.setUserId(clubId.getUserId());
+        log.debug("{}", boardId);
 //        if(boardId != null)
-        List<PostMainData> postMainDataList = postService.getPostByBoardId(boardId.getBoardId());
+        List<PostMainData> postMainDataList = postService.getPostByBoardId(boardId);
         log.debug("{}", postMainDataList);
         return postMainDataList;
     }

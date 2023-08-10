@@ -14,7 +14,7 @@ public interface PostMapper {
 
     PostMainData getPostByPrimaryKey(PostId postId);
 
-    List<PostMainData> getPostByBoardId(int postBoardId);
+    List<PostMainData> getPostByBoardId(BoardId boardId);
 
     BoardId getBoardIdByClubId(int clubId);
 
