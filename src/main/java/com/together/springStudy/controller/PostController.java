@@ -136,9 +136,16 @@ public class PostController {
     }
 
 //    좋아요 관련
-    @PostMapping("/createLike")
-    public ResponseEntity<Void> createLike(@RequestBody PostLike postLike){
+    @PostMapping("/postLike")
+    public ResponseEntity<Void> postLike(@RequestBody PostLike postLike){
         log.debug("createLike : {}", postLike);
+        PostLike postLikeResult = postService.getPostLike(postLike);
+        log.debug("{}", postLikeResult);
+        if(postLikeResult != null){
+            Integer result = postService.deleteLike(postLike);
+            if (result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
         Integer result = postService.createLike(postLike);
         if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

@@ -239,6 +239,14 @@
             comment_creation_date desc
     </select>
 
+    <select id="getPostLike" resultType="com.together.springStudy.model.PostLike">
+        SELECT
+            *
+        FROM
+            post_like
+        WHERE
+            like_id
+    </select>
 
     <insert id="createBoardData" parameterType="com.together.springStudy.model.BoardData">
         INSERT INTO
@@ -278,4 +286,12 @@
         VALUES
             (#{likeUserId}, #{likePostId})
     </insert>
+
+
+    <delete id="deleteLike" parameterType="com.together.springStudy.model.PostLike">
+        DELETE FROM
+            post_like
+        WHERE
+            like_id = #{likeId}
+    </delete>
 </mapper>

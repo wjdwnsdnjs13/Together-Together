@@ -60,6 +60,12 @@ public class PostService {
     @Transactional
     public int createLike(PostLike postLike){ return postMapper.createLike(postLike);}
 
+    @Transactional
+    public PostLike getPostLike(PostLike postLike){ return postMapper.getPostLike(postLike);}
+
+    @Transactional
+    public int deleteLike(PostLike postLike){ return postMapper.deleteLike(postLike);}
+
 //    게시판 관련
     @Transactional
     public int createBoardData(BoardData boardData){ return postMapper.createBoardData(boardData); }

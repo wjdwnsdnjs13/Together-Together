@@ -3,6 +3,7 @@ package com.together.springStudy.mapper;
 import com.together.springStudy.model.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -30,6 +31,10 @@ public interface PostMapper {
 
 //    좋아요 관련
     int createLike(PostLike postLike);
+
+    PostLike getPostLike(PostLike postLike);
+
+    int deleteLike(PostLike postLike);
 
 //    게시판 관련
     int createBoardData(BoardData boardData);
