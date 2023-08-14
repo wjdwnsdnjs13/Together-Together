@@ -245,7 +245,9 @@
         FROM
             post_like
         WHERE
-            like_id = #{likeId}
+            like_post_id = #{likePostId}
+            AND
+            like_user_id = #{likeUserId}
     </select>
 
     <insert id="createBoardData" parameterType="com.together.springStudy.model.BoardData">
@@ -292,6 +294,8 @@
         DELETE FROM
             post_like
         WHERE
-            like_id = #{likeId}
+            like_post_id = #{likePostId}
+            AND
+            like_user_id = #{likeUserId}
     </delete>
 </mapper>
