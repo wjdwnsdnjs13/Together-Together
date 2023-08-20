@@ -166,6 +166,17 @@
             club_id = #{clubId}
     </update>
 
+    <update id="updateClubDescription" parameterType="com.together.springStudy.model.ClubData">
+        UPDATE
+            club_data
+        SET
+            club_description = #{clubDescription}
+        WHERE
+            club_id = #{clubId}
+            AND
+            club_leader_id = #{clubLeaderId}
+    </update>
+    
 <!--    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">-->
 <!--        INSERT INTO-->
 <!--            club_join_queue-->

@@ -83,6 +83,13 @@ public class PostController {
         return postMainDataList;
     }
 
+    @PostMapping("/getPostByBoardId")
+    public List<PostMainData> getPostByBoardId(@RequestBody BoardId boardId){
+        log.debug("getPostsByBoardId 게시판 id로 게시물 불러오기 : {}", boardId);
+        List<PostMainData> postMainDataList = postService.getPostByBoardId(boardId);
+        return postMainDataList;
+    }
+
     @PostMapping("/createPost")
     public ResponseEntity<Void> createPost(@RequestBody PostsData postsData){
         log.debug("postData : {}", postsData.toString());
@@ -103,6 +110,18 @@ public class PostController {
             log.debug("{}", clubPostParam);
             Integer result = postService.createPost(clubPostParam);
             if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/updatePostByPostId")
+    public ResponseEntity<Void> updatePostByPostId(@RequestBody PostsData postsData){
+        log.debug("updatePostByPostId 게시물 수정 : {}", postsData);
+        if (postsData != null){
+            if (postService.getPostByBoardId(new BoardId(postsData.getPostBoardId())) != null){
+                Integer result = postService.updatePostByPostId(postsData);
+                if (result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+            }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

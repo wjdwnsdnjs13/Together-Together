@@ -29,6 +29,7 @@ public interface PostMapper {
 
     int deletePost(PostsData postsData);
 
+    int updatePostByPostId(PostsData postsData);
 //    댓글 관련
     int createComment(PostComment postComment);
     int createReply(PostComment postComment);

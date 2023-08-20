@@ -290,6 +290,20 @@
     </insert>
 
 
+    <update id="updatePostByPostId" parameterType="com.together.springStudy.model.PostsData">
+        UPDATE
+            posts_data
+        SET
+            post_title = #{postTitle},
+            post_content = #{postContent}
+        WHERE
+            post_id = #{postId}
+            AND
+            post_user_id = #{postUserId}
+    </update>
+
+
+
     <delete id="deleteLike" parameterType="com.together.springStudy.model.PostLike">
         DELETE FROM
             post_like

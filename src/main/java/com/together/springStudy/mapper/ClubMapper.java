@@ -35,6 +35,8 @@ public interface ClubMapper {
 
     int updateClubRecruiting(ClubData clubData);
 
+    int updateClubDescription(ClubData clubData);
+
     int deleteAllClubMember(ClubData clubData);
 
     int deleteClub(ClubData clubData);

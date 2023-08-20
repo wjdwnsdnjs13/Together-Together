@@ -53,6 +53,9 @@ public class PostService {
     @Transactional
     public Integer deletePost(PostsData postsData){ return postMapper.deletePost(postsData);}
 
+    @Transactional
+    public Integer updatePostByPostId(PostsData postsData){ return postMapper.updatePostByPostId(postsData);}
+
 //    댓글 관련
     @Transactional
     public int createComment(PostComment postComment){ return postMapper.createComment(postComment); }

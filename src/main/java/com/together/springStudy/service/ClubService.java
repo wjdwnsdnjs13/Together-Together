@@ -71,6 +71,9 @@ public class ClubService {
     public Integer updateClubRecruiting(ClubData clubData){ return clubMapper.updateClubRecruiting(clubData); }
 
     @Transactional
+    public Integer updateClubDescription(ClubData clubData) { return clubMapper.updateClubDescription(clubData); }
+
+    @Transactional
     public Integer deleteAllClubMember(ClubData clubData) { return clubMapper.deleteAllClubMember(clubData);}
 
     @Transactional

@@ -140,8 +140,18 @@ public class ClubController {
         clubData.setClubRecruiting(!clubData.isClubRecruiting());
         log.debug("바뀐 가입 여부 상태 : {}", clubData.isClubRecruiting());
         Integer result = clubService.updateClubRecruiting(clubData);
-        if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
+        if(result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/updateClubDescription")
+    public ResponseEntity<Void> updateClubDescription(@RequestBody ClubData clubData){
+        log.debug("updateClubDescription 클럽 설명 변경 : {}", clubData);
+        if (clubData != null){
+            Integer result = clubService.updateClubDescription(clubData);
+            if (result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
     @PostMapping("/deleteClub")
