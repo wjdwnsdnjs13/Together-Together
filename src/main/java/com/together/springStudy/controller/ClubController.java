@@ -143,4 +143,18 @@ public class ClubController {
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    @PostMapping("/deleteClub")
+    public ResponseEntity<Void> deleteClub(@RequestBody ClubData clubData){
+        log.debug("deleteClub을 실행합니다. {}", clubData);
+        if(clubData != null){
+            ClubData dbClubData = clubService.getClubByIdAndLeader(clubData);
+            if((dbClubData.getClubId() == clubData.getClubId()) && (dbClubData.getClubLeaderId() == clubData.getClubLeaderId())){
+                Integer memberDeleteResult = clubService.deleteAllClubMember(clubData);
+                Integer clubDeleteResult = clubService.deleteClub(clubData);
+                if(memberDeleteResult.equals(1) && clubDeleteResult.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+            }
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 }

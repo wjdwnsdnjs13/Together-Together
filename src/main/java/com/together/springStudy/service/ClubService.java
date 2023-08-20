@@ -44,6 +44,9 @@ public class ClubService {
     public ClubData getClubByPrimaryKey(int clubId) { return clubMapper.getClubByPrimaryKey(clubId); }
 
     @Transactional
+    public ClubData getClubByIdAndLeader(ClubData clubData) { return clubMapper.getClubByIdAndLeader(clubData); }
+
+    @Transactional
     public List<ClubMemberData> getClubMemberByClubId(int clubId) { return clubMapper.getClubMemberByClubId(clubId); }
 
     @Transactional
@@ -66,5 +69,11 @@ public class ClubService {
 
     @Transactional
     public Integer updateClubRecruiting(ClubData clubData){ return clubMapper.updateClubRecruiting(clubData); }
+
+    @Transactional
+    public Integer deleteAllClubMember(ClubData clubData) { return clubMapper.deleteAllClubMember(clubData);}
+
+    @Transactional
+    public Integer deleteClub(ClubData clubData) { return clubMapper.deleteClub(clubData);}
 
 }

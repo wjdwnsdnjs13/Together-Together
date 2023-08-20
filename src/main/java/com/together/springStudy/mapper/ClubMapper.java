@@ -24,6 +24,8 @@ public interface ClubMapper {
 
     ClubData getClubByPrimaryKey(int clubId);
 
+    ClubData getClubByIdAndLeader(ClubData clubData);
+
     ClubId getLastClubId();
 
     int joinClub(ClubJoinQueue clubJoinQueue);
@@ -32,4 +34,10 @@ public interface ClubMapper {
     int deleteJoinClub(int joinQueueId);
 
     int updateClubRecruiting(ClubData clubData);
+
+    int deleteAllClubMember(ClubData clubData);
+
+    int deleteClub(ClubData clubData);
+
+    int withdrawalClub(ClubMember clubMember);
 }

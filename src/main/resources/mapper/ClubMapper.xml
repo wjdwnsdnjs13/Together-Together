@@ -106,6 +106,17 @@
             1
     </select>
 
+    <select id="getClubByIdAndLeader" parameterType="com.together.springStudy.model.ClubData" resultType="com.together.springStudy.model.ClubData">
+        SELECT
+            *
+        FROM
+            club_data
+        WHERE
+            club_id = #{clubId}
+            AND
+            club_leader_id = #{clubLeaderId}
+    </select>
+
     <insert id="createClub" parameterType="com.together.springStudy.model.ClubData">
         <selectKey resultType="int" keyProperty="clubId" order="AFTER">
             SELECT LAST_INSERT_ID()
@@ -163,4 +174,18 @@
 <!--            (#{joinUserId, #{joinClubId}, #{joinContent})-->
 <!--    </insert>-->
 
+    <delete id="deleteAllClubMember" parameterType="com.together.springStudy.model.ClubData">
+        DELETE FROM
+            club_member
+        WHERE
+            member_club_id = #{clubId}
+    </delete>
+    <delete id="deleteClub" parameterType="com.together.springStudy.model.ClubData">
+        DELETE FROM
+            club_data
+        WHERE
+            club_id = #{clubId}
+            AND
+            club_leader_id = #{clubLeaderId}
+    </delete>
 </mapper>
