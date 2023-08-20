@@ -45,6 +45,9 @@ public class PostService {
     public List<PostMainData> getPostsByUserId(int userId){ return postMapper.getPostsByUserId(userId); }
 
     @Transactional
+    public List<PostMainData> getClubPostCreatedByUser(UserId userId) { return postMapper.getClubPostCreatedByUser(userId);}
+
+    @Transactional
     public Integer deleteLikeByPostId(PostsData postsData){ return postMapper.deleteLikeByPostId(postsData);}
 
     @Transactional
@@ -55,6 +58,7 @@ public class PostService {
 
     @Transactional
     public Integer updatePostByPostId(PostsData postsData){ return postMapper.updatePostByPostId(postsData);}
+
 
 //    댓글 관련
     @Transactional

@@ -239,6 +239,45 @@
             comment_creation_date desc
     </select>
 
+
+
+    <select id="getClubPostCreatedByUser" resultMap="PostMainMap">
+        SELECT
+            posts_data.*,
+            (SELECT
+                user_nickname
+            FROM
+                user_data
+            WHERE
+                user_id = posts_data.post_user_id) as user_nickname,
+            (SELECT
+                count(*)
+            FROM
+                post_comment
+            WHERE
+                comment_post_id = posts_data.post_id) as post_comment_count,
+            (SELECT
+                count(*)
+            FROM
+                post_like
+            WHERE
+                like_post_id = posts_data.post_id) as post_like_count,
+            post_like.like_id as post_like_id
+        FROM
+            posts_data
+        LEFT JOIN
+            post_like ON
+            posts_data.post_id = post_like.like_post_id
+            AND
+            post_like.like_user_id = #{userId}
+        WHERE
+            posts_data.post_board_id > 20
+            AND
+            posts_data.post_user_id = #{userId}
+        ORDER BY
+            post_creation_date desc
+    </select>
+
     <select id="getPostLike" resultType="com.together.springStudy.model.PostLike">
         SELECT
             *

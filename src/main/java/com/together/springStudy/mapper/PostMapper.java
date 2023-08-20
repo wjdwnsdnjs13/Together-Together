@@ -23,6 +23,8 @@ public interface PostMapper {
     int createPost(PostsData postsData);
     List<PostMainData> getPostsByUserId(int userId);
 
+    List<PostMainData> getClubPostCreatedByUser(UserId userId);
+
     int deleteLikeByPostId(PostsData postsData);
 
     int deleteCommentByPostId(PostsData postsData);
@@ -30,6 +32,8 @@ public interface PostMapper {
     int deletePost(PostsData postsData);
 
     int updatePostByPostId(PostsData postsData);
+
+
 //    댓글 관련
     int createComment(PostComment postComment);
     int createReply(PostComment postComment);

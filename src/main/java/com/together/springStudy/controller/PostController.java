@@ -90,6 +90,13 @@ public class PostController {
         return postMainDataList;
     }
 
+    @PostMapping("/getClubPostCreatedByUser")
+    public List<PostMainData> getClubPostCreatedByUser(@RequestBody UserId userId){
+        log.debug("유저가 작성한 클럽 게시물 불러오기 : {}", userId);
+        List<PostMainData> postMainDataList = postService.getClubPostCreatedByUser(userId);
+        return postMainDataList;
+    }
+
     @PostMapping("/createPost")
     public ResponseEntity<Void> createPost(@RequestBody PostsData postsData){
         log.debug("postData : {}", postsData.toString());
