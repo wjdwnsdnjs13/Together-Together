@@ -148,6 +148,17 @@ public class PostController {
         return postCommentDataList;
     }
 
+    @PostMapping("/deleteCommentByCommentId")
+    public ResponseEntity<Void> deleteCommentByCommentId(@RequestBody PostComment postComment){
+        log.debug("deleteCommentByCommentId 댓글 삭제 실행 {}", postComment);
+        if (postComment != null){
+            Integer deleteChildCommentResult = postService.deleteChildComment(postComment);
+            Integer deleteCommentResult = postService.deleteCommentByCommentId(postComment);
+            if (deleteCommentResult.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 //    좋아요 관련
     @PostMapping("/postLike")
     public ResponseEntity<Void> postLike(@RequestBody PostLike postLike){

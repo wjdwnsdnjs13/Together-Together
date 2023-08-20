@@ -63,6 +63,11 @@ public class PostService {
     @Transactional
     public List<PostCommentData> getAllCommentByPostId(int postId){ return postMapper.getAllCommentByPostId(postId);}
 
+    @Transactional
+    public Integer deleteChildComment(PostComment postComment) { return postMapper.deleteChildComment(postComment);}
+
+    @Transactional
+    public Integer deleteCommentByCommentId(PostComment postComment) { return postMapper.deleteCommentByCommentId(postComment);}
 
 //    좋아요 관련
     @Transactional

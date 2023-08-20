@@ -35,6 +35,10 @@ public interface PostMapper {
 
     List<PostCommentData> getAllCommentByPostId(int postId);
 
+    int deleteChildComment(PostComment postComment);
+
+    int deleteCommentByCommentId(PostComment postComment);
+
 //    좋아요 관련
     int createLike(PostLike postLike);
 

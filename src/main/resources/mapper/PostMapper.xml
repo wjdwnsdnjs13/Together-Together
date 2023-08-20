@@ -299,6 +299,21 @@
             like_user_id = #{likeUserId}
     </delete>
 
+    <delete id="deleteChildComment" parameterType="com.together.springStudy.model.PostComment">
+        DELETE FROM
+            post_comment
+        WHERE
+            comment_parentnum = #{commentId}
+    </delete>
+    <delete id="deleteCommentByCommentId" parameterType="com.together.springStudy.model.PostComment">
+        DELETE FROM
+            post_comment
+        WHERE
+            comment_id = #{commentId}
+            AND
+            comment_user_id = #{commentUserId}
+    </delete>
+
     <delete id="deleteLikeByPostId" parameterType="com.together.springStudy.model.PostsData">
         DELETE FROM
             post_like
