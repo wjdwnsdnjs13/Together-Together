@@ -185,6 +185,12 @@
 <!--            (#{joinUserId, #{joinClubId}, #{joinContent})-->
 <!--    </insert>-->
 
+    <delete id="deleteClubBoard" parameterType="com.together.springStudy.model.ClubData">
+        DELETE FROM
+        board_data
+        WHERE
+        board_id = #{clubBoardId}
+    </delete>
     <delete id="deleteAllClubMember" parameterType="com.together.springStudy.model.ClubData">
         DELETE FROM
             club_member

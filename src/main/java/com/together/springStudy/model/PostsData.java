@@ -18,6 +18,11 @@ public class PostsData {
 
     public PostsData(){};
 
+    public PostsData(int postId, int postUserId) {
+        this.postId = postId;
+        this.postUserId = postUserId;
+    }
+
     public PostsData(int postBoardId, int postUserId, String postTitle, String postContent) {
         this.postBoardId = postBoardId;
         this.postUserId = postUserId;

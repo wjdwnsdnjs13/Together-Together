@@ -160,6 +160,8 @@ public class ClubController {
         if(clubData != null){
             ClubData dbClubData = clubService.getClubByIdAndLeader(clubData);
             if((dbClubData.getClubId() == clubData.getClubId()) && (dbClubData.getClubLeaderId() == clubData.getClubLeaderId())){
+                clubData.setClubBoardId(postService.getBoardIdByClubId(clubData.getClubId()).getBoardId());
+                Integer boardDeleteResult = clubService.deleteClubBoard(clubData);
                 Integer memberDeleteResult = clubService.deleteAllClubMember(clubData);
                 Integer clubDeleteResult = clubService.deleteClub(clubData);
                 if(memberDeleteResult.equals(1) && clubDeleteResult.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
