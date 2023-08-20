@@ -128,6 +128,7 @@ public class PostController {
             postsData.setPostTitle("건의사항");
             postsData.setPostCreationDate(new Timestamp(System.currentTimeMillis()));
             Integer result = postService.createPost(postsData);
+            if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
