@@ -120,6 +120,18 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @PostMapping("/createSuggestion")
+    public ResponseEntity<Void> createSuggestion(@RequestBody PostsData postsData){
+        log.debug("createSuggestion 건의하기 실행 {}",postsData);
+        if (postsData != null){
+            postsData.setPostBoardId(3);
+            postsData.setPostTitle("건의사항");
+            postsData.setPostCreationDate(new Timestamp(System.currentTimeMillis()));
+            Integer result = postService.createPost(postsData);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 //    댓글 관련
     @PostMapping("/createComment")
     public ResponseEntity<Void> createComment(@RequestBody PostComment postComment){
