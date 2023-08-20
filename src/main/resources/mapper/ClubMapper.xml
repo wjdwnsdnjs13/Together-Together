@@ -188,4 +188,13 @@
             AND
             club_leader_id = #{clubLeaderId}
     </delete>
+
+    <delete id="withdrawalClub" parameterType="com.together.springStudy.model.ClubMember">
+        DELETE FROM
+            club_member
+        WHERE
+            member_club_id = #{memberClubId}
+            AND
+            member_user_id = #{memberUserId}
+    </delete>
 </mapper>

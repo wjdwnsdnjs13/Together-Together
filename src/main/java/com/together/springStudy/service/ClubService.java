@@ -76,4 +76,7 @@ public class ClubService {
     @Transactional
     public Integer deleteClub(ClubData clubData) { return clubMapper.deleteClub(clubData);}
 
+    @Transactional
+    public Integer withdrawalClub(ClubMember clubMember) { return clubMapper.withdrawalClub(clubMember);}
+
 }
