@@ -298,4 +298,26 @@
             AND
             like_user_id = #{likeUserId}
     </delete>
+
+    <delete id="deleteLikeByPostId" parameterType="com.together.springStudy.model.PostsData">
+        DELETE FROM
+            post_like
+        WHERE
+            like_post_id = #{postId}
+    </delete>
+    <delete id="deleteCommentByPostId" parameterType="com.together.springStudy.model.PostsData">
+        DELETE FROM
+            post_comment
+        WHERE
+            comment_post_id = #{postId}
+    </delete>
+    <delete id="deletePost" parameterType="com.together.springStudy.model.PostsData">
+        DELETE FROM
+            posts_data
+        WHERE
+            post_id = #{postId}
+            AND
+            post_user_id = #{postUserId}
+    </delete>
+
 </mapper>

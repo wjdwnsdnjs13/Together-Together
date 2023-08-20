@@ -107,6 +107,19 @@ public class PostController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
+    @PostMapping("/deletePost")
+    public ResponseEntity<Void> deletePost(@RequestBody PostsData postsData){
+        log.debug("deletePost 게시물 삭제를 실행합니다. {}", postsData);
+        if (postsData != null){
+            Integer deleteLikeResult = postService.deleteLikeByPostId(postsData);
+            Integer deleteCommentResult = postService.deleteCommentByPostId(postsData);
+            log.debug("연결된 좋아요와 댓글 삭제 완료.");
+            Integer deletePostResult = postService.deletePost(postsData);
+            if(deletePostResult.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
 //    댓글 관련
     @PostMapping("/createComment")
     public ResponseEntity<Void> createComment(@RequestBody PostComment postComment){

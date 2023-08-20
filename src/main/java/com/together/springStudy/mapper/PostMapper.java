@@ -23,6 +23,12 @@ public interface PostMapper {
     int createPost(PostsData postsData);
     List<PostMainData> getPostsByUserId(int userId);
 
+    int deleteLikeByPostId(PostsData postsData);
+
+    int deleteCommentByPostId(PostsData postsData);
+
+    int deletePost(PostsData postsData);
+
 //    댓글 관련
     int createComment(PostComment postComment);
     int createReply(PostComment postComment);

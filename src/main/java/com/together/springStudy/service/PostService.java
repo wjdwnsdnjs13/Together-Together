@@ -44,6 +44,14 @@ public class PostService {
     @Transactional
     public List<PostMainData> getPostsByUserId(int userId){ return postMapper.getPostsByUserId(userId); }
 
+    @Transactional
+    public Integer deleteLikeByPostId(PostsData postsData){ return postMapper.deleteLikeByPostId(postsData);}
+
+    @Transactional
+    public Integer deleteCommentByPostId(PostsData postsData){ return postMapper.deleteCommentByPostId(postsData);}
+
+    @Transactional
+    public Integer deletePost(PostsData postsData){ return postMapper.deletePost(postsData);}
 
 //    댓글 관련
     @Transactional
