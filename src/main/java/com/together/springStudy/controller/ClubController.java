@@ -175,7 +175,10 @@ public class ClubController {
         log.debug("withdrawalClub 클럽 탈퇴를 실행합니다. {}", clubMember);
         if(clubMember != null){
             Integer result = clubService.withdrawalClub(clubMember);
-            if(result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+            if(result.equals(1)) {
+                log.debug("탈퇴 완료 {}", result);
+                return ResponseEntity.status(HttpStatus.OK).build();
+            }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
