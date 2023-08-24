@@ -33,6 +33,19 @@
             post_data
     </select>
 
+    <select id="getLastNoticeDate" resultType="com.together.springStudy.model.PostMainData">
+        SELECT
+            *
+        FROM
+            posts_data
+        WHERE
+            post_board_id = 1
+        ORDER BY
+            post_creation_date desc
+        LIMIT
+            1
+    </select>
+
     <select id="getAllPostForMain" resultMap="PostMainMap">
         SELECT
             posts_data.*,

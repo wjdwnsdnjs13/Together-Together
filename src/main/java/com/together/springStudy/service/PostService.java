@@ -27,6 +27,9 @@ public class PostService {
     public List<PostMainData> getAllPostForMain(int userId){ return postMapper.getAllPostForMain(userId); }
 
     @Transactional
+    public PostMainData getLastNoticeDate() { return postMapper.getLastNoticeDate();}
+
+    @Transactional
     public PostMainData getPostByPrimaryKey(PostId postId){ return postMapper.getPostByPrimaryKey(postId); }
 
     @Transactional

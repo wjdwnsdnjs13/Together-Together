@@ -13,6 +13,8 @@ public interface PostMapper {
 //    post 관련
     List<PostMainData> getAllPostForMain(int userId);
 
+    PostMainData getLastNoticeDate();
+
     PostMainData getPostByPrimaryKey(PostId postId);
 
     List<PostMainData> getPostByBoardId(BoardId boardId);

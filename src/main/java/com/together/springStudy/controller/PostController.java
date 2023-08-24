@@ -9,9 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.stream.events.Comment;
 import java.sql.Timestamp;
-import java.util.Date;
 import java.util.List;
 
 @Slf4j
@@ -29,10 +27,14 @@ public class PostController {
 
 //    post 관련
     @PostMapping("/getAllPostForMain")
-    public List<PostMainData> getAllPostForMain(@RequestBody UserId userId){
-        List<PostMainData> postMainDataList = postService.getAllPostForMain(userId.getUserId());
-        log.debug("mainPost : {}", postMainDataList);
-        return postMainDataList;
+    public SnsMainPageData getAllPostForMain(@RequestBody UserId userId){
+        log.debug("getAllPostForMain 메인 페이지 통신 실행.");
+        SnsMainPageData snsMainPageData = new SnsMainPageData();
+        snsMainPageData.setSnsMainPosts(postService.getAllPostForMain(userId.getUserId()));
+        snsMainPageData.setLastNoticeDate(postService.getLastNoticeDate().getPostCreationDate());
+        log.debug("snsMainPageData : {}", snsMainPageData);
+
+        return snsMainPageData;
 //        postMainDataList가 null일 경우 등에 대한 예외처리 해야할 듯?
     }
 
