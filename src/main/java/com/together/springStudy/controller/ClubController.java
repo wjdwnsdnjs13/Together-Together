@@ -28,6 +28,8 @@ public class ClubController {
     @PostMapping("/createClub")
     public ResponseEntity<Void> createClub(@RequestBody ClubData clubData){
         log.debug("createClubData info : {}", clubData);
+        ClubData clubDataDB = clubService.getClubByClubName(clubData.getClubName());
+        if (clubDataDB.getClubName().equals(clubData.getClubName())) return ResponseEntity.status(HttpStatus.CONFLICT).build();
         ClubId lastClubId = clubService.getLastClubId();
         log.debug("마지막 클럽 id : {}", lastClubId);
         BoardData boardData = new BoardData();
