@@ -38,7 +38,7 @@ public class ClubService {
     public List<ClubData> getAffiliatedClub(int userId) { return clubMapper.getAffiliatedClub(userId); }
 
     @Transactional
-    public List<ClubJoinQueue> getJoinClubQueue(int clubId) { return clubMapper.getJoinClubQueue(clubId); }
+    public List<ClubJoinQueueData> getJoinClubQueue(int clubId) { return clubMapper.getJoinClubQueue(clubId); }
 
     @Transactional
     public ClubData getClubByPrimaryKey(int clubId) { return clubMapper.getClubByPrimaryKey(clubId); }

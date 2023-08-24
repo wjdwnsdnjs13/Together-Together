@@ -80,11 +80,11 @@ public class ClubController {
     }
 
     @PostMapping("/getJoinClubQueue")
-    public List<ClubJoinQueue> getJoinClubQueue(@RequestBody ClubId clubId){
+    public List<ClubJoinQueueData> getJoinClubQueue(@RequestBody ClubId clubId){
         log.debug("불러오려는 clubJoinQueue : {}", clubId);
-        List<ClubJoinQueue> clubJoinQueueList = clubService.getJoinClubQueue(clubId.getClubId());
-        log.debug("클럽 가입 대기열 : {}", clubJoinQueueList);
-        return clubJoinQueueList;
+        List<ClubJoinQueueData> clubJoinQueueDataList = clubService.getJoinClubQueue(clubId.getClubId());
+        log.debug("클럽 가입 대기열 : {}", clubJoinQueueDataList);
+        return clubJoinQueueDataList;
     }
 
     @PostMapping("/getClubMemberByClubId")
