@@ -132,7 +132,7 @@ public class ClubController {
         Integer result = clubService.joinClubApproval(clubJoinQueue);
         if(result.equals(1)){
             log.debug("가입 처리 완료. 큐에서 삭제를 진행합니다.");
-            Integer removeResult = clubService.deleteJoinClub(clubJoinQueue.getJoinQueueId());
+            Integer removeResult = clubService.updateJoinClubApproval(clubJoinQueue.getJoinQueueId());
             if(removeResult.equals(1)) {
                 log.debug("큐에서 삭제를 완료했습니다.");
                 return ResponseEntity.status(HttpStatus.OK).build();

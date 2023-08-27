@@ -66,8 +66,8 @@ public class ClubService {
         return clubMapper.joinClubApproval(clubJoinQueue);
     }
     @Transactional
-    public Integer deleteJoinClub(int joinQueueId){
-        return clubMapper.deleteJoinClub(joinQueueId);
+    public Integer updateJoinClubApproval(int joinQueueId){
+        return clubMapper.updateJoinClubApproval(joinQueueId);
     }
 
     @Transactional

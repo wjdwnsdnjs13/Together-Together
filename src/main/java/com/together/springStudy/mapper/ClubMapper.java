@@ -33,7 +33,7 @@ public interface ClubMapper {
     int joinClub(ClubJoinQueue clubJoinQueue);
 
     int joinClubApproval(ClubJoinQueue clubJoinQueue);
-    int deleteJoinClub(int joinQueueId);
+    int updateJoinClubApproval(int joinQueueId);
 
     int updateClubRecruiting(ClubData clubData);
 

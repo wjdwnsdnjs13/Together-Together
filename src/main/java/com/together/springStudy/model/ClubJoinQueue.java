@@ -9,4 +9,5 @@ public class ClubJoinQueue {
     int joinUserId;
     int joinClubId;
     String joinContent;
+    int joinState;
 }

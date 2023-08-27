@@ -166,12 +166,14 @@
         VALUES
             (#{joinUserId}, #{joinClubId})
     </insert>
-    <delete id="deleteJoinClub">
-        DELETE FROM
+    <update id="updateJoinClubApproval">
+        UPDATE
             club_join_queue
+        SET
+            join_state = 1
         WHERE
             join_queue_id = #{joinQueueId}
-    </delete>
+    </update>
 
     <update id="updateClubRecruiting" parameterType="com.together.springStudy.model.ClubData">
         UPDATE
