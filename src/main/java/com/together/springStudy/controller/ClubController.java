@@ -131,12 +131,23 @@ public class ClubController {
         log.debug("clubJoinQueue : {}", clubJoinQueue);
         Integer result = clubService.joinClubApproval(clubJoinQueue);
         if(result.equals(1)){
-            log.debug("가입 처리 완료. 큐에서 삭제를 진행합니다.");
+            log.debug("가입 처리 완료. 큐 상태 변화를 진행합니다.");
             Integer removeResult = clubService.updateJoinClubApproval(clubJoinQueue.getJoinQueueId());
             if(removeResult.equals(1)) {
-                log.debug("큐에서 삭제를 완료했습니다.");
+                log.debug("큐 상태 변화를 완료했습니다.");
                 return ResponseEntity.status(HttpStatus.OK).build();
             }
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+    @PostMapping("/joinClubRefusal")
+    public ResponseEntity<Void> joinClubRefusal(@RequestBody ClubJoinQueue clubJoinQueue){
+        log.debug("joinClubRefusal 클럽 가입 거부를 실행합니다 {}", clubJoinQueue);
+        Integer result = clubService.joinClubRefusal(clubJoinQueue);
+        if (result.equals(1)){
+            log.debug("가입 거부를 완료했습니다.");
+            return ResponseEntity.status(HttpStatus.OK).build();
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }

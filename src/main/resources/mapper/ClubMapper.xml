@@ -175,6 +175,15 @@
             join_queue_id = #{joinQueueId}
     </update>
 
+    <update id="joinClubRefusal" parameterType="com.together.springStudy.model.ClubJoinQueue">
+        UPDATE
+        club_join_queue
+        SET
+        join_state = 2
+        WHERE
+        join_queue_id = #{joinQueueId}
+    </update>
+
     <update id="updateClubRecruiting" parameterType="com.together.springStudy.model.ClubData">
         UPDATE
             club_data
@@ -194,7 +203,8 @@
             AND
             club_leader_id = #{clubLeaderId}
     </update>
-    
+
+
 <!--    <insert id="joinClub" parameterType="com.together.springStudy.model.ClubJoinQueue">-->
 <!--        INSERT INTO-->
 <!--            club_join_queue-->
@@ -231,10 +241,6 @@
             member_club_id = #{memberClubId}
             AND
             member_user_id = #{memberUserId}
-    </delete>
-
-    <delete id="joinClubRefusal" parameterType="com.together.springStudy.model.ClubJoinQueue">
-
     </delete>
 
 </mapper>

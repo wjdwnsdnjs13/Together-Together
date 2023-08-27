@@ -35,6 +35,8 @@ public interface ClubMapper {
     int joinClubApproval(ClubJoinQueue clubJoinQueue);
     int updateJoinClubApproval(int joinQueueId);
 
+    int joinClubRefusal(ClubJoinQueue clubJoinQueue);
+
     int updateClubRecruiting(ClubData clubData);
 
     int updateClubDescription(ClubData clubData);

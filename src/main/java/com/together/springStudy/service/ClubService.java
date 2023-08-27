@@ -71,6 +71,9 @@ public class ClubService {
     }
 
     @Transactional
+    public Integer joinClubRefusal(ClubJoinQueue clubJoinQueue) { return clubMapper.joinClubRefusal(clubJoinQueue);}
+
+    @Transactional
     public Integer updateClubRecruiting(ClubData clubData){ return clubMapper.updateClubRecruiting(clubData); }
 
     @Transactional
