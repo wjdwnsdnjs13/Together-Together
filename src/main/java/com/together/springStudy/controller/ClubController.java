@@ -116,9 +116,11 @@ public class ClubController {
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
         log.debug("joinClub : {}", clubJoinQueue);
         ClubJoinQueue clubJoinQueueDB = clubService.getJoinClubQueueByUserIdAndClubId(clubJoinQueue);
-        if ((clubJoinQueue.getJoinUserId() == clubJoinQueueDB.getJoinUserId()) && (clubJoinQueue.getJoinClubId() == clubJoinQueueDB.getJoinClubId())) {
-            log.debug("이미 가입 요청을 넣은 상태입니다.");
-            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        if (clubJoinQueueDB != null){
+            if ((clubJoinQueue.getJoinUserId() == clubJoinQueueDB.getJoinUserId()) && (clubJoinQueue.getJoinClubId() == clubJoinQueueDB.getJoinClubId())) {
+                log.debug("이미 가입 요청을 넣은 상태입니다.");
+                return ResponseEntity.status(HttpStatus.CONFLICT).build();
+            }
         }
         Integer result = clubService.joinClub(clubJoinQueue);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
@@ -182,7 +184,10 @@ public class ClubController {
                 Integer boardDeleteResult = clubService.deleteClubBoard(clubData);
                 Integer memberDeleteResult = clubService.deleteAllClubMember(clubData);
                 Integer clubDeleteResult = clubService.deleteClub(clubData);
-                if(memberDeleteResult.equals(1) && clubDeleteResult.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+                if(memberDeleteResult.equals(1) && clubDeleteResult.equals(1)) {
+                    log.debug("클럽 삭제 완료되었습니다.");
+                    return ResponseEntity.status(HttpStatus.OK).build();
+                }
             }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
