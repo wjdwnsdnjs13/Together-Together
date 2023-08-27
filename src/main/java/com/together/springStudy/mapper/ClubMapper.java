@@ -12,9 +12,9 @@ public interface ClubMapper {
 
     ClubData getClubByClubName(String clubName);
 
-    List<ClubData> getAllClub();
+    List<ClubListData> getAllClub();
 
-    List<ClubData> getAffiliatedClub(int userId);
+    List<ClubListData> getAffiliatedClub(int userId);
 
     ClubJoinQueue getJoinClubQueueByUserIdAndClubId(ClubJoinQueue clubJoinQueue);
 
@@ -22,7 +22,7 @@ public interface ClubMapper {
 
     List<ClubMemberData> getClubMemberByClubId(int clubId);
 
-    List<ClubData> getClubForKeyword(Keyword keyword);
+    List<ClubListData> getClubForKeyword(Keyword keyword);
 
     ClubData getClubByPrimaryKey(int clubId);
 

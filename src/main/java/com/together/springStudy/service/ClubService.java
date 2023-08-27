@@ -30,12 +30,12 @@ public class ClubService {
     public ClubData getClubByClubName(String clubName) { return clubMapper.getClubByClubName(clubName); }
 
     @Transactional
-    public List<ClubData> getAllClub(){
+    public List<ClubListData> getAllClub(){
         return clubMapper.getAllClub();
     }
 
     @Transactional
-    public List<ClubData> getAffiliatedClub(int userId) { return clubMapper.getAffiliatedClub(userId); }
+    public List<ClubListData> getAffiliatedClub(int userId) { return clubMapper.getAffiliatedClub(userId); }
 
     @Transactional
     public ClubJoinQueue getJoinClubQueueByUserIdAndClubId(ClubJoinQueue clubJoinQueue) {return clubMapper.getJoinClubQueueByUserIdAndClubId(clubJoinQueue);}
@@ -53,7 +53,7 @@ public class ClubService {
     public List<ClubMemberData> getClubMemberByClubId(int clubId) { return clubMapper.getClubMemberByClubId(clubId); }
 
     @Transactional
-    public List<ClubData> getClubForKeyword(Keyword keyword) { return clubMapper.getClubForKeyword(keyword); }
+    public List<ClubListData> getClubForKeyword(Keyword keyword) { return clubMapper.getClubForKeyword(keyword); }
 
     @Transactional
     public ClubId getLastClubId(){ return clubMapper.getLastClubId(); }

@@ -69,11 +69,11 @@ public class ClubController {
     }
 
     @GetMapping("/getAllClub")
-    public List<ClubData> getAllClub(){
+    public List<ClubListData> getAllClub(){
         log.debug("getAllClub play.");
-        List<ClubData> clubDataList = clubService.getAllClub();
-        log.debug("club List : {}", clubDataList);
-        return clubDataList;
+        List<ClubListData> clubListDataList = clubService.getAllClub();
+        log.debug("club List : {}", clubListDataList);
+        return clubListDataList;
 //        clubDataList가 안 불러와졌을 때 Bad Request날릴 수 있어야할 듯?
 //        if(clubDataList != null) return clubDataList;
 //        else ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -96,20 +96,20 @@ public class ClubController {
     }
 
     @PostMapping("/getClubForKeyword")
-    public List<ClubData> getClubForKeyword(@RequestBody Keyword keyword){
+    public List<ClubListData> getClubForKeyword(@RequestBody Keyword keyword){
         log.debug("키워드 : {}", keyword);
-        List<ClubData> clubDataList = clubService.getClubForKeyword(keyword);
-        log.debug("불러온 클럽 리스트 : {}", clubDataList);
-        return clubDataList;
+        List<ClubListData> clubListDataList = clubService.getClubForKeyword(keyword);
+        log.debug("불러온 클럽 리스트 : {}", clubListDataList);
+        return clubListDataList;
     }
 
 //    가입된 동아리 목록 조회
     @PostMapping("/getAffiliatedClub")
-    public List<ClubData> getAffiliatedClub(@RequestBody UserId userId){
+    public List<ClubListData> getAffiliatedClub(@RequestBody UserId userId){
         log.debug("userId : {}", userId);
-        List<ClubData> clubDataList = clubService.getAffiliatedClub(userId.getUserId());
-        log.debug("동아리 목록 : {}", clubDataList);
-        return clubDataList;
+        List<ClubListData> clubListDataList = clubService.getAffiliatedClub(userId.getUserId());
+        log.debug("동아리 목록 : {}", clubListDataList);
+        return clubListDataList;
     }
 
     @PostMapping("/joinClub")
