@@ -115,6 +115,11 @@ public class ClubController {
     @PostMapping("/joinClub")
     public ResponseEntity<Void> joinClub(@RequestBody ClubJoinQueue clubJoinQueue){
         log.debug("joinClub : {}", clubJoinQueue);
+        ClubJoinQueue clubJoinQueueDB = clubService.getJoinClubQueueByUserIdAndClubId(clubJoinQueue);
+        if ((clubJoinQueue.getJoinUserId() == clubJoinQueueDB.getJoinUserId()) && (clubJoinQueue.getJoinClubId() == clubJoinQueueDB.getJoinClubId())) {
+            log.debug("이미 가입 요청을 넣은 상태입니다.");
+            return ResponseEntity.status(HttpStatus.CONFLICT).build();
+        }
         Integer result = clubService.joinClub(clubJoinQueue);
         if(result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

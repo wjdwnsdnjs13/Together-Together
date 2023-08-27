@@ -38,6 +38,17 @@
             club_id = #{clubId}
     </select>
 
+    <select id="getJoinClubQueueByUserIdAndClubId" parameterType="com.together.springStudy.model.ClubJoinQueue" resultType="com.together.springStudy.model.ClubJoinQueue">
+        SELECT
+            *
+        FROM
+            club_join_queue
+        WHERE
+            join_user_id = #{joinUserId}
+            AND
+            join_club_id = #{joinClubId}
+    </select>
+
     <select id="getJoinClubQueue" resultMap="ClubJoinQueueMap">
         SELECT
             club_join_queue.*, user_data.user_nickname
