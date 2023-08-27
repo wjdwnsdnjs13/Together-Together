@@ -40,7 +40,7 @@
 
     <select id="getJoinClubQueue" resultMap="ClubJoinQueueMap">
         SELECT
-            *
+            club_join_queue.*, user_data.user_nickname
         FROM
             club_join_queue
         LEFT JOIN
@@ -219,4 +219,9 @@
             AND
             member_user_id = #{memberUserId}
     </delete>
+
+    <delete id="joinClubRefusal" parameterType="com.together.springStudy.model.ClubJoinQueue">
+
+    </delete>
+
 </mapper>
