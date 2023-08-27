@@ -3,12 +3,14 @@
 
 <mapper namespace="com.together.springStudy.mapper.ClubMapper">
 
-    <resultMap id="ClubDataMap" type="com.together.springStudy.model.ClubData">
+    <resultMap id="ClubListDataMap" type="com.together.springStudy.model.ClubListData">
         <id column="club_id" property="clubId"/>
         <result column="club_leader_id" property="clubLeaderId"/>
         <result column="club_board_id" property="clubBoardId"/>
         <result column="club_name" property="clubName"/>
         <result column="club_description" property="clubDescription"/>
+        <result column="club_master_nickname" property="clubMasterNickname"/>
+        <result column="club_member_count" property="clubMemberCount"/>
     </resultMap>
 
     <resultMap id="ClubJoinQueueMap" type="com.together.springStudy.model.ClubJoinQueueData">
@@ -23,9 +25,21 @@
         <id column="user_nickname" property="userNickname"/>
     </resultMap>
 
-    <select id="getAllClub" resultMap="ClubDataMap">
+    <select id="getAllClub" resultMap="ClubListDataMap">
         SELECT
-            *
+            *,
+            (SELECT
+                user_nickname
+            FROM
+                user_data
+            WHERE
+                user_data.user_id = club_data.club_leader_id) as club_master_nickname,
+            (SELECT
+                count(*)
+            FROM
+                club_member
+            WHERE
+                club_member.member_club_id = club_data.club_id) as club_member_count
         FROM
             club_data
     </select>
@@ -76,9 +90,21 @@
             user_data.user_name;
     </select>
 
-    <select id="getClubForKeyword" parameterType="com.together.springStudy.model.Keyword" resultMap="ClubDataMap">
+    <select id="getClubForKeyword" parameterType="com.together.springStudy.model.Keyword" resultMap="ClubListDataMap">
         SELECT
-            *
+            *,
+            (SELECT
+                user_nickname
+            FROM
+                user_data
+            WHERE
+                user_data.user_id = club_data.club_leader_id) as club_master_nickname,
+            (SELECT
+                count(*)
+            FROM
+                club_member
+            WHERE
+                club_member.member_club_id = club_data.club_id) as club_member_count
         FROM
             club_data
         <where>
@@ -90,9 +116,21 @@
         </where>
     </select>
 
-    <select id="getAffiliatedClub" resultMap="ClubDataMap">
+    <select id="getAffiliatedClub" resultMap="ClubListDataMap">
         SELECT
-            club_data.*
+            club_data.*,
+            (SELECT
+                user_nickname
+            FROM
+                user_data
+            WHERE
+                user_data.user_id = club_data.club_leader_id) as club_master_nickname,
+            (SELECT
+                count(*)
+            FROM
+                club_member
+            WHERE
+                club_member.member_club_id = club_data.club_id) as club_member_count
         FROM
             club_data
         INNER JOIN
