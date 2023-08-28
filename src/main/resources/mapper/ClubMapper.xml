@@ -280,5 +280,13 @@
             AND
             member_user_id = #{memberUserId}
     </delete>
+    <delete id="deleteQueue" parameterType="com.together.springStudy.model.ClubMember">
+        DELETE FROM
+            club_join_queue
+        WHERE
+            join_user_id = #{memberUserId}
+            AND
+            join_club_id = #{memberClubId}
+    </delete>
 
 </mapper>

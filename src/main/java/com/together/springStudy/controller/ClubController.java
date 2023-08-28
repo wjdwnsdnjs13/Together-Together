@@ -198,6 +198,7 @@ public class ClubController {
         log.debug("withdrawalClub 클럽 탈퇴를 실행합니다. {}", clubMember);
         if(clubMember != null){
             Integer result = clubService.withdrawalClub(clubMember);
+            Integer queueResult = clubService.deleteQueue(clubMember);
             if(result.equals(1)) {
                 log.debug("탈퇴 완료 {}", result);
                 return ResponseEntity.status(HttpStatus.OK).build();

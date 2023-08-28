@@ -48,6 +48,7 @@ public interface ClubMapper {
     int deleteClub(ClubData clubData);
 
     int withdrawalClub(ClubMember clubMember);
+    int deleteQueue(ClubMember clubMember);
 
 
 }

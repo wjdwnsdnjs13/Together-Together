@@ -91,5 +91,7 @@ public class ClubService {
 
     @Transactional
     public Integer withdrawalClub(ClubMember clubMember) { return clubMapper.withdrawalClub(clubMember);}
+    @Transactional
+    public Integer deleteQueue(ClubMember clubMember) { return clubMapper.deleteQueue(clubMember);}
 
 }
