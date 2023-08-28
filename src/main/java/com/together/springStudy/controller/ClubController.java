@@ -158,9 +158,11 @@ public class ClubController {
     public ResponseEntity<Void> updateClubRecruiting(@RequestBody ClubData clubData){
         log.debug("현재 가입 여부 상태 : {}", clubData.isClubRecruiting());
         clubData.setClubRecruiting(!clubData.isClubRecruiting());
-        log.debug("바뀐 가입 여부 상태 : {}", clubData.isClubRecruiting());
         Integer result = clubService.updateClubRecruiting(clubData);
-        if(result.equals(1)) return ResponseEntity.status(HttpStatus.OK).build();
+        if(result.equals(1)) {
+            log.debug("변경이 완료 되었습니다 현재 상태 : {}", clubData.isClubRecruiting());
+            return ResponseEntity.status(HttpStatus.OK).build();
+        }
         else return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
 
