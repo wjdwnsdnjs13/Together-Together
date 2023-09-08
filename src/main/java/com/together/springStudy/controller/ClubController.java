@@ -15,7 +15,7 @@ import java.util.List;
 
 @Slf4j
 @RequestMapping("/together/club")
-@RequiredArgsConstructor
+@RequiredArgsConstructor //필드 주입을 하고 있는데, 왜 얘도 씀?
 @RestController
 public class ClubController {
 
