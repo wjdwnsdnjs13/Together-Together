@@ -25,6 +25,11 @@
         <result column="comment_content" property="commentContent"/>
         <result column="user_nickname" property="userNickname"/>
     </resultMap>
+    
+    <resultMap id="ImageMap" type="hashMap">
+        <id column="idx" property="idx"/>
+        <result column="image" property="image" jdbcType="BLOB" javaType="byte[]" />
+    </resultMap>
 
     <select id="getAllPost">
         SELECT
@@ -301,6 +306,16 @@
             AND
             like_user_id = #{likeUserId}
     </select>
+
+    <select id="getImageByPrimaryKey" resultMap="ImageMap">
+        SELECT
+            *
+        FROM
+            test_blob
+        WHERE
+            idx = #{idx}
+    </select>
+
 
     <insert id="createBoardData" parameterType="com.together.springStudy.model.BoardData">
         INSERT INTO

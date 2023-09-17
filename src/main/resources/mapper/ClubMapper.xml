@@ -3,6 +3,11 @@
 
 <mapper namespace="com.together.springStudy.mapper.ClubMapper">
 
+    <sql id="selectAll">
+        SELECT *
+        FROM user_data
+    </sql>
+
     <resultMap id="ClubListDataMap" type="com.together.springStudy.model.ClubListData">
         <id column="club_id" property="clubId"/>
         <result column="club_leader_id" property="clubLeaderId"/>
@@ -21,11 +26,13 @@
         <result column="user_nickname" property="userNickname"/>
     </resultMap>
 
+
     <resultMap id="ClubMemberDataMap" type="com.together.springStudy.model.ClubMemberData">
         <id column="user_nickname" property="userNickname"/>
     </resultMap>
 
     <select id="getAllClub" resultMap="ClubListDataMap">
+        <include refid="selectAll"/>
         SELECT
             *,
             (SELECT
@@ -43,6 +50,7 @@
         FROM
             club_data
     </select>
+
     <select id="getClubByPrimaryKey" resultType="com.together.springStudy.model.ClubData">
         SELECT
             *

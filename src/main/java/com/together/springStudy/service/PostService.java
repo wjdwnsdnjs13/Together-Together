@@ -50,6 +50,8 @@ public class PostService {
     @Transactional
     public List<PostMainData> getClubPostCreatedByUser(UserId userId) { return postMapper.getClubPostCreatedByUser(userId);}
 
+    public TestImage getImageByPrimaryKey(int idx) { return postMapper.getImageByPrimaryKey(idx);}
+
     @Transactional
     public Integer deleteLikeByPostId(PostsData postsData){ return postMapper.deleteLikeByPostId(postsData);}
 

@@ -99,6 +99,13 @@ public class PostController {
         return postMainDataList;
     }
 
+    @PostMapping("/getImageByPrimaryKey")
+    public TestImage getImageByPrimaryKey(@RequestParam int idx){
+        TestImage testImage = postService.getImageByPrimaryKey(idx);
+        log.debug("유저가 요청한 이미지 : {}", testImage);
+        return testImage;
+    }
+
     @PostMapping("/createPost")
     public ResponseEntity<Void> createPost(@RequestBody PostsData postsData){
         log.debug("postData : {}", postsData.toString());

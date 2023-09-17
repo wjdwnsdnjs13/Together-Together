@@ -27,6 +27,8 @@ public interface PostMapper {
 
     List<PostMainData> getClubPostCreatedByUser(UserId userId);
 
+    TestImage getImageByPrimaryKey(int idx);
+
     int deleteLikeByPostId(PostsData postsData);
 
     int deleteCommentByPostId(PostsData postsData);
