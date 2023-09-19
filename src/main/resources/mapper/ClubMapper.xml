@@ -63,6 +63,8 @@
             join_user_id = #{joinUserId}
             AND
             join_club_id = #{joinClubId}
+            AND
+            join_state != 2
     </select>
 
     <select id="getJoinClubQueue" resultMap="ClubJoinQueueMap">
@@ -217,11 +219,11 @@
 
     <update id="joinClubRefusal" parameterType="com.together.springStudy.model.ClubJoinQueue">
         UPDATE
-        club_join_queue
+            club_join_queue
         SET
-        join_state = 2
+            join_state = 2
         WHERE
-        join_queue_id = #{joinQueueId}
+            join_queue_id = #{joinQueueId}
     </update>
 
     <update id="updateClubRecruiting" parameterType="com.together.springStudy.model.ClubData">
