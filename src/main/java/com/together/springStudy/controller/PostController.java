@@ -8,8 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.sql.Timestamp;
+import java.util.Base64;
 import java.util.List;
 
 @Slf4j
@@ -224,5 +226,18 @@ public class PostController {
         Integer result = postService.createLike(postLike);
         if (result.equals(1)) return ResponseEntity.status(HttpStatus.CREATED).build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
+
+//    이미지 연습
+    @PostMapping("/imageCreateTest")
+    public ResponseEntity<Void> imageCreateTest(@RequestParam MultipartFile imageSrc){
+        try {
+            log.debug("imageSrc : {}", imageSrc.getBytes());
+            byte[] imageByte = Base64.getDecoder().decode(imageSrc.getBytes());
+            log.debug("변환된 imageSrc : {}", imageByte);
+        } catch (Exception e){
+
+        }
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

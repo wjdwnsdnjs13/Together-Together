@@ -31,14 +31,18 @@ public class ClubController {
         ClubData clubDataDB = clubService.getClubByClubName(clubData.getClubName());
         if (clubDataDB != null && clubDataDB.getClubName().equals(clubData.getClubName())) return ResponseEntity.status(HttpStatus.CONFLICT).build();
         ClubId lastClubId = clubService.getLastClubId();
+        if (lastClubId == null){
+            lastClubId = new ClubId();
+            lastClubId.setClubId(0);
+        }
         log.debug("마지막 클럽 id : {}", lastClubId);
         BoardData boardData = new BoardData();
         boardData.setBoardName(clubData.getClubName() + "동아리 게시판");
         boardData.setBoardType(1);
-        boardData.setBoardId((lastClubId.getClubId() * 10) + 11);
+        boardData.setBoardId((lastClubId.getClubId()) + 101);
         Integer boardCreateResult = postService.createBoardData(boardData);
         if(boardCreateResult.equals(1)){
-            clubData.setClubBoardId((lastClubId.getClubId() * 10) + 11);
+            clubData.setClubBoardId((lastClubId.getClubId()) + 101);
             Integer result = clubService.createClub(clubData);
             if (result.equals(1)) {
                 if( clubData.getClubId() != 0){
@@ -186,10 +190,8 @@ public class ClubController {
                 Integer boardDeleteResult = clubService.deleteClubBoard(clubData);
                 Integer memberDeleteResult = clubService.deleteAllClubMember(clubData);
                 Integer clubDeleteResult = clubService.deleteClub(clubData);
-                if(memberDeleteResult.equals(1) && clubDeleteResult.equals(1)) {
-                    log.debug("클럽 삭제 완료되었습니다.");
-                    return ResponseEntity.status(HttpStatus.OK).build();
-                }
+                log.debug("클럽 삭제 완료되었습니다.");
+                return ResponseEntity.status(HttpStatus.OK).build();
             }
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

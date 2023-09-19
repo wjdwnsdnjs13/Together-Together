@@ -356,6 +356,13 @@
             (#{likeUserId}, #{likePostId})
     </insert>
 
+    <insert id="createPostImages" parameterType="com.together.springStudy.model.PostImages">
+        INSERT INTO
+            post_images
+            (post_image_user_id, post_image_parentnum, post_image_src)
+        VALUES
+            (#{postImageUserId}, #{postImageParentnum}, #{postImageSrc})
+    </insert>
 
     <update id="updatePostByPostId" parameterType="com.together.springStudy.model.PostsData">
         UPDATE
