@@ -2,6 +2,7 @@ package com.together.springStudy.controller;
 
 import com.together.springStudy.model.*;
 import com.together.springStudy.service.PostService;
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class PostController {
     PostService postService;
 
 //    post 관련
+    @Operation(summary = "모든 게시물을 가져오는 메인 sns화면",
+            description = "모든 게시물을 가져오는 메인 sns화면으로 userId 값을 넘길 경우 해당 유저 게시물 선택됨.")
     @PostMapping("/getAllPostForMain")
     public SnsMainPageData getAllPostForMain(@RequestBody UserId userId){
         log.debug("getAllPostForMain 메인 페이지 통신 실행.");

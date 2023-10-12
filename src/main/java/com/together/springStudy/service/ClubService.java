@@ -16,6 +16,9 @@ public class ClubService {
 
     @Autowired
     ClubMapper clubMapper;
+//    얘를 final로 만들면 초기화가 필요해서 필수 인자로 처리가 됨.
+//    따라서 위의 RequiredArgsConstructor에서 생성하는 생성자에 인자로 clubMapper가 잡힘.
+//    그러므로 Autowired를 쓰면 final 안 쓰는게 맞음.
 
     @Transactional
     public Integer createClub(ClubData clubData){

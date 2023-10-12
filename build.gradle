@@ -21,13 +21,21 @@ repositories {
 }
 
 dependencies {
+//	Spring
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.0'
-	compileOnly 'org.projectlombok:lombok'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//	lombok
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+//	Swagger
+//	spring boot 3.0미만에서는 springdoc 2.0 미만을 사용해야됨.
+	implementation 'org.springdoc:springdoc-openapi-ui:1.7.0'
+//	DB
+	runtimeOnly 'com.mysql:mysql-connector-j'
+//	test
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
 }
 
 tasks.named('test') {

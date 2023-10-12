@@ -3,6 +3,7 @@ package com.together.springStudy.controller;
 import com.together.springStudy.model.*;
 import com.together.springStudy.service.ClubService;
 import com.together.springStudy.service.PostService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/together/club")
 @RequiredArgsConstructor //필드 주입을 하고 있는데, 왜 얘도 씀?
+@Tag(name = "clubController", description = "club 관련 기능들 api명세서")
 @RestController
 public class ClubController {
 
